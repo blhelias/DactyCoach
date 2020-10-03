@@ -1,7 +1,9 @@
-# Dacty Coach
+# Dacty Coach [Logo à venir...]
 
-Roadmap
-
+Roadmap:
+1. récupérer template react creative Tim
+2. animations du board
+3. ...
 
 Fonctionnalités attendues:
 - Header et sidebar moderne (voir la maquette lol)
@@ -17,8 +19,12 @@ Fonctionnalités attendues:
 - Pour chaque niveau, je peux voir la vitesse d'écriture (mot par minute) (voir maquette)
 - Ecran lié aux stats d'un utilisateur (meilleur score par niveau, score moyen, evolution depuis première utilisation, ...)
 
-### Ecran niveau 1 - caractère par caractère
-![alt text](https://github.com/blhelias/DactyCoach/blob/master/img/niveau1_dacty_coach.png)
+### Niveau 1 - caractère par caractère
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/doc/niv1_dacty.png)
+### Niveau 2 - Mot par mot
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/doc/niv2_dacty.png)
+### Niveau 3 - Syntaxe programmation
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/doc/niv3_dacty.png)
 
 ## Guide démarrage
 
