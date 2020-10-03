@@ -1,6 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dacty Coach
 
-## Available Scripts
+Roadmap
+
+Fonctionnalités attendues:
+- Header et sidebar moderne
+- [alt text](https://github.com/blhelias/DactyCoach/blob/master/img/niveau1_dacty_coach.png)
+- 
+
+## Guide démarrage
 
 In the project directory, you can run:
 
