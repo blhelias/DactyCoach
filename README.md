@@ -1,6 +1,4 @@
-# Dacty Coach
-
-Roadmap
+# Dacty Coach [Logo à venir...]
 
 
 Fonctionnalités attendues:
