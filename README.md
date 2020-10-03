@@ -4,7 +4,7 @@ Roadmap
 
 
 Fonctionnalités attendues:
-- Header et sidebar moderne (voir la maquette)
+- Header et sidebar moderne (voir la maquette lol)
 - Dans le contenu de la page web (voir la maquette):
   - En haut un composant text input et un bouton refresh permettant de recomancer une partie à zero.
   - Le reste de l'espace est occupé par un espace rectangulaire (le **board**), ou les caractères/mots défilent de gauche à droite à vitesse plus ou moins constante.
