@@ -3,9 +3,21 @@
 Roadmap
 
 Fonctionnalités attendues:
-- Header et sidebar moderne
-- [alt text](https://github.com/blhelias/DactyCoach/blob/master/img/niveau1_dacty_coach.png)
-- 
+- Header et sidebar moderne (voir la maquette)
+- Dans le contenu de la page web:
+  - en haut un composant text input
+  - le reste de l'espace est occupé par un espace rectangulaire (le **board**), ou les caractères/mots défilesnt de gauche a droite a vitesse plus ou moins constante.
+  - Si un utilisateur tappe correctement un caractère/mot alors il disparait du **board**.
+  - Si un mot/caractère dépasse la ligne a droite du board, c'est une faute donc fin de partie ou il perd une vie.
+- 3 niveaux différents: 
+  - Caractère par caractère
+  - Mot par mot
+  - Mot par mot reliés a un langage de programmation (au choix)
+- Pour chaque niveau, je peux voir la vitesse d'ecriture (mot par minute) --> voir maquette
+- Ecran lié aux stats d'un utilisateur (meilleur score par niveau, score moyen, evolution depuis première utilisation)
+
+### Ecran niveau 1 - caractère par caractère
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/img/niveau1_dacty_coach.png)
 
 ## Guide démarrage
 
