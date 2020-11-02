@@ -16,7 +16,7 @@ export default function Home() {
     <div>
       <GridContainer>
 
-        <GridItem xs={12} sm={12} md={12} >
+        <GridItem xs={12} sm={12} md={12} style={{textAlign: "center"}}>
             <Button
                 variant="contained"
                 color="primary"
