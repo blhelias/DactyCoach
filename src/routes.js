@@ -19,7 +19,7 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Home from "@material-ui/icons/Home";
 import Person from "@material-ui/icons/Person";
-// core components/views for Admin layout
+// core components/views for DactyCoach layout
 import HomePage from "views/Home/Home.js"
 import DactyCoachPage from "views/DactyCoach/DactyCoach.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
