@@ -24,18 +24,15 @@ function detectSpace(e, userInput, setUserInput, inputVal, setInputVal){
     }
 }
 
-
 function handleChange(e, inputVal, setInputVal, hasStarted, setHasStarted){
     if (!hasStarted) {
         setHasStarted(true);
-        // triggerCountdown();
     }
 
     if (e.target.value !== " "){
          setInputVal(e.target.value);
     }
 }
-
 
 function reset(e, setTimeLeft, setHasStarted, setInputVal){
     setTimeLeft(60);
@@ -120,6 +117,7 @@ export default () => {
             </GridItem>
 
             {/* Animation Board */}
+            {/* TODO */}
             <GridItem xs={12} sm={12} md={12}>
                 <Board inputVal={userInput}></Board>
             </GridItem>
