@@ -1,9 +1,9 @@
 # Dacty Coach [Logo à venir...]
 
-Roadmap:
-1. récupérer template react creative Tim
-2. animations du board
-3. ...
+TODOs:
+* Countdown timer component
+* Text animation board component
+* Logo + graphic layout (color, font, ...)
 
 Fonctionnalités attendues:
 - Header et sidebar moderne (voir la maquette lol)

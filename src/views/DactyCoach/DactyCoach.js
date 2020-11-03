@@ -29,6 +29,7 @@ function handleChange(e, inputVal, setInputVal){
 }
 
 function clickHandler(e){
+    // TODO: NotImplementedYet
     // reset timer
     // clean Board
     console.log(e);
@@ -37,8 +38,10 @@ function clickHandler(e){
 export default () => {
 
   const classes = useStyles();
+  // Init state
   const [userInput, setUserInput] = useState('');
-  const [inputVal, setInputVal] = useState(''); 
+  const [inputVal, setInputVal] = useState('');
+  const [remainingTime, setRemainingTime] = useState('1:00');
 
   return (
     <div>
@@ -46,7 +49,7 @@ export default () => {
 
             {/* User Input */}
             <GridItem xs={12} sm={12} md={10}>
-                <DCTextField 
+                <DCTextField
                   value={inputVal}
                   handleChange={(e) => handleChange(
                       e,
@@ -54,8 +57,8 @@ export default () => {
                       setInputVal
                   )}
                   detectSpace={(e) => detectSpace(
-                      e, 
-                      userInput, 
+                      e,
+                      userInput,
                       setUserInput,
                       inputVal,
                       setInputVal
@@ -65,9 +68,9 @@ export default () => {
 
             {/* Timer */}
             <GridItem xs={12} sm={12} md={1} >
-                <p>1:00</p>
+                <p>{remainingTime}</p>
             </GridItem>
-        
+
             {/* Reset Button */}
             <GridItem xs={12} sm={12} md={1} >
                 <IconButton
