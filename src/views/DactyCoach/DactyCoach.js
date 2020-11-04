@@ -8,27 +8,45 @@ import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import DCTextField from "components/DCInputField/DCInputField.js";
 import Timer from "components/Timer/Timer.js";
-import Board from "components/Board/Board.js";
+// import Board from "components/Board/Board.js";
+import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
 const useStyles = makeStyles(styles);
+const wordsInit = [
+    {"word": "Lorem", "id": 0, "active": 0, "checked": 0},
+    {"word": "ipsum", "id": 1, "active": 0, "checked": 0},
+    {"word": "dolor", "id": 2, "active": 0, "checked": 0},
+    {"word": "sit",   "id": 3, "active": 0, "checked": 0},
+    {"word": "amet",  "id": 4, "active": 0, "checked": 0}
+]
 
+function updateWords(userInput, index, setIndex, words, setWords){
+    if (userInput===words[index].word){
+        words[index].checked = 1;
+        words[index].active = 0;
+        if (index+1<=words.length-1){
+            words[index+1].active = 1;
+        }
+        setIndex(index + 1);
+        setWords(words);
+    }
+}
 
 // Events Handlers
 // ---------------
 
-function detectSpace(e, userInput, setUserInput, inputVal, setInputVal){
+function detectSpace(e, setUserInput, setInputVal){
     if (e.keyCode===32) {
         setUserInput(e.target.value);
         setInputVal('');
     }
 }
 
-
-function handleChange(e, inputVal, setInputVal, hasStarted, setHasStarted){
+function handleChange(e, setInputVal, hasStarted, setHasStarted, index, words){
     if (!hasStarted) {
         setHasStarted(true);
-        // triggerCountdown();
+        words[index].active = 1;
     }
 
     if (e.target.value !== " "){
@@ -36,11 +54,12 @@ function handleChange(e, inputVal, setInputVal, hasStarted, setHasStarted){
     }
 }
 
-
-function reset(e, setTimeLeft, setHasStarted, setInputVal){
+function reset(setTimeLeft, setHasStarted, setInputVal, setIndex, setWords){
     setTimeLeft(60);
     setHasStarted(false);
     setInputVal("");
+    setIndex(0);
+    setWords(JSON.parse(JSON.stringify(wordsInit)));
 }
 
 
@@ -56,6 +75,9 @@ export default () => {
   // Timer component
   const [hasStarted, setHasStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
+  // Words component
+  const [words, setWords] = useState(JSON.parse(JSON.stringify(wordsInit)));
+  const [index, setIndex] = useState(0);
 
   // Manage Timer component 
   useEffect(() => {
@@ -64,13 +86,31 @@ export default () => {
           interval = setInterval(() => {
               setTimeLeft(timeLeft => timeLeft - 1);
           }, 1000);
-      } else if (!hasStarted || timeLeft <= 0) {
-	      setTimeLeft(60);
-		  setHasStarted(false);	
-          clearInterval(interval);
+      } else {
+          reset(
+            setTimeLeft,
+            setHasStarted,
+            setInputVal,
+            setIndex,
+            setWords
+          )
 	  }
 	return () => clearInterval(interval);
   }, [hasStarted, timeLeft]);
+
+  useEffect(() => {
+      if (index <= words.length-1){
+          updateWords(userInput, index, setIndex, words, setWords);
+      } else {
+          reset(
+            setTimeLeft,
+            setHasStarted,
+            setInputVal,
+            setIndex,
+            setWords
+          )
+      }
+  }, [index, words, inputVal, timeLeft, hasStarted, userInput]);
 
   return (
     <div>
@@ -82,17 +122,16 @@ export default () => {
                   value={inputVal}
                   handleChange={(e) => handleChange(
                       e,
-                      inputVal,
                       setInputVal,
                       hasStarted,
-                      setHasStarted
+                      setHasStarted,
+                      index,
+                      words
                   )}
                   detectSpace={(e) => detectSpace(
                       e,
-                      userInput,
                       setUserInput,
-                      inputVal,
-                      setInputVal
+                      setInputVal,
                   )}
                 />
             </GridItem>
@@ -110,18 +149,18 @@ export default () => {
                     className={classes.button}
                     children={<AutorenewIcon />}
                     style={{height: "100%"}}
-                    onClick={(e) => reset(
-                        e, 
+                    onClick={(e) => reset( 
                         setTimeLeft,
                         setHasStarted,
-                        setInputVal
+                        setInputVal,
+                        setIndex,
+                        setWords
                     )}
                 ></IconButton>
             </GridItem>
 
-            {/* Animation Board */}
             <GridItem xs={12} sm={12} md={12}>
-                <Board inputVal={userInput}></Board>
+                <Words words={words} />
             </GridItem>
 
         </GridContainer>

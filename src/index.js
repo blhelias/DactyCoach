@@ -24,6 +24,7 @@ import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Admin from "layouts/DactyCoach.js";
 
 import "assets/css/material-dashboard-react.css?v=1.9.0";
+import "assets/css/dactycoach.css";
 
 const hist = createBrowserHistory();
 

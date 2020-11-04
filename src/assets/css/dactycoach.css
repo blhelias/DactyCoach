@@ -1,0 +1,17 @@
+.active {
+    font-weight: bold;
+}
+
+.notActive {
+    font-weight: normal;
+}
+
+.checked {
+    color: green;
+    font-weight: bold;
+}
+
+/* .notChecked {
+    color: red;
+    font-weight: bold;
+}*/
