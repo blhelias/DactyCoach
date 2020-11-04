@@ -21,8 +21,6 @@ const wordsInit = [
     {"word": "amet",  "id": 4, "active": 0, "checked": 0}
 ]
 
-// let w = JSON.parse(JSON.stringify(wordsInit));
-
 function updateWords(userInput, index, setIndex, words, setWords){
     if (userInput===words[index].word){
         words[index].checked = 1;
@@ -89,9 +87,13 @@ export default () => {
               setTimeLeft(timeLeft => timeLeft - 1);
           }, 1000);
       } else {
-	      setTimeLeft(60);
-		  setHasStarted(false);	
-          clearInterval(interval);
+          reset(
+            setTimeLeft,
+            setHasStarted,
+            setInputVal,
+            setIndex,
+            setWords
+          )
 	  }
 	return () => clearInterval(interval);
   }, [hasStarted, timeLeft]);
