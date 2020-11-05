@@ -14,7 +14,8 @@ export default ({id, value, active, checked}) => {
 	return (
         <span 
           id={id} 
-          className={checkedMapper[checked] + " " + activeMapper[active]}>
+          className={checkedMapper[checked] + " " + activeMapper[active]}
+          style={{"font-size": "xx-large"}}>
             {value}  </span>
 	);
 }
