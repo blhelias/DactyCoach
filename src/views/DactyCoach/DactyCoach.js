@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
-import IconButton from '@material-ui/core/IconButton';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import DCTextField from "components/DCInputField/DCInputField.js";
 import Timer from "components/Timer/Timer.js";
+import Reset from "components/Reset/Reset.js";
 // import Board from "components/Board/Board.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
@@ -42,7 +41,8 @@ function detectSpace(e, setInputWord, setInputVal){
     }
 }
 
-function handleChange(e, setInputVal, hasStarted, setHasStarted, index, words){
+function handleChange(e, setInputVal, hasStarted, 
+                      setHasStarted, index, words){
     if (!hasStarted) {
         setHasStarted(true);
         words[index].active = 1;
@@ -53,11 +53,13 @@ function handleChange(e, setInputVal, hasStarted, setHasStarted, index, words){
     }
 }
 
-function reset(setTimeLeft, setHasStarted, setInputVal, setIndex, setWords){
+function reset(setTimeLeft, setHasStarted, setInputVal, 
+               setIndex, setWords, setInputWord){
     setTimeLeft(60);
     setHasStarted(false);
     setInputVal("");
     setIndex(0);
+    setInputWord("");
     setWords(JSON.parse(JSON.stringify(wordsInit)));
 }
 
@@ -88,14 +90,15 @@ export default () => {
             setHasStarted,
             setInputVal,
             setIndex,
-            setWords
+            setWords,
+            setInputWord
           )
 	  }
 	return () => clearInterval(interval);
-  }, [hasStarted, timeLeft]);
+  }, [timeLeft, hasStarted]); // only trigger when timer variable is updated
 
   useEffect(() => {
-      if (index <= words.length-1){
+      if (index <= words.length-1 && hasStarted) {
           updateWords(inputWord, index, setIndex, words, setWords);
       } else {
           reset(
@@ -103,10 +106,11 @@ export default () => {
             setHasStarted,
             setInputVal,
             setIndex,
-            setWords
+            setWords,
+            setInputWord
           )
       }
-  }, [index, words, inputVal, timeLeft, hasStarted, inputWord]);
+  }, [inputWord, index]);
 
   return (
     <div>
@@ -139,32 +143,20 @@ export default () => {
 
             {/* Reset Button */}
             <GridItem xs={12} sm={12} md={1} >
-                <div style={{
-                    "height": "100%",
-                      "display":"flex",
-                      "justify-content": "center",
-                      "align-items":"center"
-                }}>
-                <IconButton
-                    variant="contained"
-                    color="default"
-                    className={classes.button}
-                    children={<AutorenewIcon />}
-                    style={{
-                      "height": "100%",
-                    }}
-                    onClick={(e) => reset( 
-                        setTimeLeft,
-                        setHasStarted,
-                        setInputVal,
-                        setIndex,
-                        setWords
-                    )}
-                ></IconButton></div>
+              <Reset onReset={(e) => reset(
+                     setTimeLeft,
+                     setHasStarted,
+                     setInputVal,
+                     setIndex,
+                     setWords,
+                     setInputWord
+                )}
+                classReset={classes.button} 
+              />
             </GridItem>
 
             <GridItem xs={12} sm={12} md={12}>
-              <div style={{"padding-top":"20px"}}>
+              <div style={{"paddingTop":"20px"}}>
                 <Words words={words} />
               </div>
             </GridItem>

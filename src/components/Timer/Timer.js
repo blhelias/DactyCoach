@@ -5,10 +5,10 @@ export default ({value}) => {
 	return (
 	    <div 
           id="timer" 
-          style={{"font-size": "x-large",
+          style={{"fontSize": "x-large",
           "display":"flex",
-          "justify-content": "center",
-          "align-items":"center",
+          "justifyContent": "center",
+          "alignItems":"center",
           "height":"100%"}}
         >
             {value}
