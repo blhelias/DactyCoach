@@ -138,13 +138,21 @@ export default () => {
             </GridItem>
 
             {/* Reset Button */}
-            <GridItem xs={12} sm={12} md={1} style={{"display":"inline-grid","justify-content":"center","align-content":"center"}} >
+            <GridItem xs={12} sm={12} md={1} >
+                <div style={{
+                    "height": "100%",
+                      "display":"flex",
+                      "justify-content": "center",
+                      "align-items":"center"
+                }}>
                 <IconButton
                     variant="contained"
                     color="default"
                     className={classes.button}
                     children={<AutorenewIcon />}
-                    style={{height: "100%"}}
+                    style={{
+                      "height": "100%",
+                    }}
                     onClick={(e) => reset( 
                         setTimeLeft,
                         setHasStarted,
@@ -152,11 +160,13 @@ export default () => {
                         setIndex,
                         setWords
                     )}
-                ></IconButton>
+                ></IconButton></div>
             </GridItem>
 
             <GridItem xs={12} sm={12} md={12}>
+              <div style={{"padding-top":"20px"}}>
                 <Words words={words} />
+              </div>
             </GridItem>
 
         </GridContainer>
