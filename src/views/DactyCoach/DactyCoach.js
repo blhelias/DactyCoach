@@ -21,8 +21,8 @@ const wordsInit = [
     {"word": "amet",  "id": 4, "active": 0, "checked": 0}
 ]
 
-function updateWords(userInput, index, setIndex, words, setWords){
-    if (userInput===words[index].word){
+function updateWords(inputWord, index, setIndex, words, setWords){
+    if (inputWord===words[index].word){
         words[index].checked = 1;
         words[index].active = 0;
         if (index+1<=words.length-1){
@@ -35,10 +35,9 @@ function updateWords(userInput, index, setIndex, words, setWords){
 
 // Events Handlers
 // ---------------
-
-function detectSpace(e, setUserInput, setInputVal){
+function detectSpace(e, setInputWord, setInputVal){
     if (e.keyCode===32) {
-        setUserInput(e.target.value);
+        setInputWord(e.target.value);
         setInputVal('');
     }
 }
@@ -66,11 +65,8 @@ function reset(setTimeLeft, setHasStarted, setInputVal, setIndex, setWords){
 export default () => {
 
   const classes = useStyles();
-  // Init state
-  // ----------
-
   // Input Component 
-  const [userInput, setUserInput] = useState('');
+  const [inputWord, setInputWord] = useState('');
   const [inputVal, setInputVal] = useState('');
   // Timer component
   const [hasStarted, setHasStarted] = useState(false);
@@ -100,7 +96,7 @@ export default () => {
 
   useEffect(() => {
       if (index <= words.length-1){
-          updateWords(userInput, index, setIndex, words, setWords);
+          updateWords(inputWord, index, setIndex, words, setWords);
       } else {
           reset(
             setTimeLeft,
@@ -110,7 +106,7 @@ export default () => {
             setWords
           )
       }
-  }, [index, words, inputVal, timeLeft, hasStarted, userInput]);
+  }, [index, words, inputVal, timeLeft, hasStarted, inputWord]);
 
   return (
     <div>
@@ -130,7 +126,7 @@ export default () => {
                   )}
                   detectSpace={(e) => detectSpace(
                       e,
-                      setUserInput,
+                      setInputWord,
                       setInputVal,
                   )}
                 />
@@ -142,7 +138,7 @@ export default () => {
             </GridItem>
 
             {/* Reset Button */}
-            <GridItem xs={12} sm={12} md={1}>
+            <GridItem xs={12} sm={12} md={1} style={{"display":"inline-grid","justify-content":"center","align-content":"center"}} >
                 <IconButton
                     variant="contained"
                     color="default"

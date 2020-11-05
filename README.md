@@ -1,11 +1,14 @@
 # Dacty Coach [Logo à venir...]
 
-TODOs:
-* Countdown timer component
+## TODO
+
+* Afficher { score, mots par minute, ...}
+* Génerer mots aléatoirs
 * Text animation board component
 * Logo + graphic layout (color, font, ...)
 
-Fonctionnalités attendues:
+## Fonctionnalités attendues
+
 - Header et sidebar moderne (voir la maquette lol)
 - Dans le contenu de la page web (voir la maquette):
     - En haut un composant text input et un bouton refresh permettant de recomancer une partie à zero.

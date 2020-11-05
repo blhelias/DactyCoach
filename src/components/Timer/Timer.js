@@ -2,8 +2,12 @@ import React from "react";
 
 
 export default ({value}) => {
-    // TODO: mise en forme du timer
 	return (
-	    <div>{value}</div>
+	    <div 
+          id="timer" 
+          style={{"font-size": "x-large", "text-align": "center"}}
+        >
+            {value}
+        </div>
 	);
 }
