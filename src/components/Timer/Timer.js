@@ -5,7 +5,11 @@ export default ({value}) => {
 	return (
 	    <div 
           id="timer" 
-          style={{"font-size": "x-large", "text-align": "center"}}
+          style={{"fontSize": "x-large",
+          "display":"flex",
+          "justifyContent": "center",
+          "alignItems":"center",
+          "height":"100%"}}
         >
             {value}
         </div>

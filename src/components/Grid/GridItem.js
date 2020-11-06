@@ -15,7 +15,7 @@ const useStyles = makeStyles(styles);
 
 export default function GridItem(props) {
   const classes = useStyles();
-  const { children, ...rest } = props;
+  const { id, children, ...rest } = props;
   return (
     <Grid item {...rest} className={classes.grid} >
       {children}

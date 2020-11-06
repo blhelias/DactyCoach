@@ -15,3 +15,9 @@
     color: red;
     font-weight: bold;
 }*/
+
+#timer-container{
+    display:inline-grid;
+    justify-content:center;
+    align-content:center;
+}
