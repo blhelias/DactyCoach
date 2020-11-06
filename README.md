@@ -2,8 +2,8 @@
 
 ## TODO
 
-* Afficher { score, mots par minute, ...}
-* Génerer mots aléatoirs
+* Afficher { score, mots par minute, nombre d'echecs}
+* Améliorer le rendu des mots
 * Text animation board component
 * Logo + graphic layout (color, font, ...)
 

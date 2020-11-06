@@ -21,3 +21,14 @@
     justify-content:center;
     align-content:center;
 }
+
+#words-container{
+    height: 20vh;
+    overflow: hidden;
+}
+
+.word{
+    padding: 5px;
+    display: inline-block;
+    margin-top: 1px;
+}

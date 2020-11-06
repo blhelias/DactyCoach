@@ -7,20 +7,16 @@ import GridContainer from "components/Grid/GridContainer.js";
 import DCTextField from "components/DCInputField/DCInputField.js";
 import Timer from "components/Timer/Timer.js";
 import Reset from "components/Reset/Reset.js";
-// import Board from "components/Board/Board.js";
+import Score from "components/Score/Score.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+// utils.js
+import wordsInit from "utils.js";
 
 const useStyles = makeStyles(styles);
-const wordsInit = [
-    {"word": "Lorem", "id": 0, "active": 0, "checked": 0},
-    {"word": "ipsum", "id": 1, "active": 0, "checked": 0},
-    {"word": "dolor", "id": 2, "active": 0, "checked": 0},
-    {"word": "sit",   "id": 3, "active": 0, "checked": 0},
-    {"word": "amet",  "id": 4, "active": 0, "checked": 0}
-]
 
-function updateWords(inputWord, index, setIndex, words, setWords){
+function updateWords(inputWord, index, setIndex, words, 
+    setWords, score, setScore){
     if (inputWord===words[index].word){
         words[index].checked = 1;
         words[index].active = 0;
@@ -28,6 +24,7 @@ function updateWords(inputWord, index, setIndex, words, setWords){
             words[index+1].active = 1;
         }
         setIndex(index + 1);
+        setScore(score + 1);
         setWords(words);
     }
 }
@@ -54,11 +51,12 @@ function handleChange(e, setInputVal, hasStarted,
 }
 
 function reset(setTimeLeft, setHasStarted, setInputVal, 
-               setIndex, setWords, setInputWord){
+               setIndex, setWords, setInputWord, setScore){
     setTimeLeft(60);
     setHasStarted(false);
     setInputVal("");
     setIndex(0);
+    setScore(0);
     setInputWord("");
     setWords(JSON.parse(JSON.stringify(wordsInit)));
 }
@@ -76,6 +74,8 @@ export default () => {
   // Words component
   const [words, setWords] = useState(JSON.parse(JSON.stringify(wordsInit)));
   const [index, setIndex] = useState(0);
+  // Score component  
+  const [score, setScore] = useState(0);
 
   // Manage Timer component 
   useEffect(() => {
@@ -91,7 +91,8 @@ export default () => {
             setInputVal,
             setIndex,
             setWords,
-            setInputWord
+            setInputWord,
+            setScore
           )
 	  }
 	return () => clearInterval(interval);
@@ -99,7 +100,7 @@ export default () => {
 
   useEffect(() => {
       if (index <= words.length-1 && hasStarted) {
-          updateWords(inputWord, index, setIndex, words, setWords);
+          updateWords(inputWord, index, setIndex, words, setWords, score, setScore);
       } else {
           reset(
             setTimeLeft,
@@ -107,14 +108,20 @@ export default () => {
             setInputVal,
             setIndex,
             setWords,
-            setInputWord
+            setInputWord,
+            setScore
           )
       }
   }, [inputWord, index]);
 
   return (
     <div>
-        <GridContainer>
+        <GridContainer justify="center">
+
+            {/* Score */}
+            <GridItem xs={12} sm={12} md={3} alignItems="center" >
+                <Score value={score} classes={classes} />
+            </GridItem>
 
             {/* User Input */}
             <GridItem xs={12} sm={12} md={10}>
@@ -149,12 +156,14 @@ export default () => {
                      setInputVal,
                      setIndex,
                      setWords,
-                     setInputWord
+                     setInputWord,
+                     setScore
                 )}
                 classReset={classes.button} 
               />
             </GridItem>
 
+            {/* Words component */}
             <GridItem xs={12} sm={12} md={12}>
               <div style={{"paddingTop":"20px"}}>
                 <Words words={words} />
