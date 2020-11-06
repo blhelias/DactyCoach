@@ -10,18 +10,10 @@ import Reset from "components/Reset/Reset.js";
 // import Board from "components/Board/Board.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
-
-import wordsList from "variables/liste-mots-nature-frequence.js";
-console.log(wordsList);
+// utils.js
+import wordsInit from "utils.js";
 
 const useStyles = makeStyles(styles);
-const wordsInit = [
-    {"word": "Lorem", "id": 0, "active": 0, "checked": 0},
-    {"word": "ipsum", "id": 1, "active": 0, "checked": 0},
-    {"word": "dolor", "id": 2, "active": 0, "checked": 0},
-    {"word": "sit",   "id": 3, "active": 0, "checked": 0},
-    {"word": "amet",  "id": 4, "active": 0, "checked": 0}
-]
 
 function updateWords(inputWord, index, setIndex, words, setWords){
     if (inputWord===words[index].word){

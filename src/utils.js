@@ -1,7 +1,10 @@
 import wordsList from "variables/liste-mots-nature-frequence.js";
 
 function getRandomSubarray(arr, size) {
-    let shuffled = arr.slice(0), i = arr.length, temp, index;
+    let shuffled = arr.slice()
+    let i = arr.length
+    let temp
+    let index;
     while (i--) {
         index = Math.floor((i + 1) * Math.random());
         temp = shuffled[index];
@@ -12,8 +15,19 @@ function getRandomSubarray(arr, size) {
 }
 
 function addMetaData(arr){
-	// TODO
+    let copy = []
+    for (var i = 0; i < arr.length; i++) {
+          copy.push({
+            "word": arr[i],
+            "id": i,
+            "active": 0,
+            "checked": 0
+          });
+    }
+    return copy
 }
 
-let arrSample = getRandomSubarray(xwordsList, 200);
-let wordsSample = addMetaData(arrSample);
+const arrSample = getRandomSubarray(wordsList.wordsList, 200);
+const wordsInit = addMetaData(arrSample);
+
+export default wordsInit;
