@@ -11,6 +11,9 @@ import Reset from "components/Reset/Reset.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
+import wordsList from "variables/liste-mots-nature-frequence.js";
+console.log(wordsList);
+
 const useStyles = makeStyles(styles);
 const wordsInit = [
     {"word": "Lorem", "id": 0, "active": 0, "checked": 0},
