@@ -4,19 +4,19 @@ import Word from "components/Word/Word.js";
 
 export default ({words}) => {
 	return (
-        <div id="words-container">
+          <div id="words-container">
             {words.map(word => {
                 if (word.checked===0){     
                     return(
                     <Word 
                         key={word.id} 
                         active={word.active} 
-                        checked={word.checked} 
+                        hasFailed={word.hasFailed} 
                         value={word.word} 
                         id={word.id} 
                     /> )
                 }
             })}
-        </div>
+          </div>
 	);
 }

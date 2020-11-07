@@ -13,7 +13,7 @@ export default ({value, classes}) => {
 	return (
 	    <div id="score" 
              style={{
-               "text-align": "center", 
+               "textAlign": "center", 
                "fontSize": "x-large", 
                "width":"100%"
              }}>

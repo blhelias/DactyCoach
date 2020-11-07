@@ -11,23 +11,10 @@ import Score from "components/Score/Score.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 // utils.js
-import wordsInit from "utils.js";
+import resetWordsSample from "utils.js";
 
 const useStyles = makeStyles(styles);
 
-function updateWords(inputWord, index, setIndex, words, 
-    setWords, score, setScore){
-    if (inputWord===words[index].word){
-        words[index].checked = 1;
-        words[index].active = 0;
-        if (index+1<=words.length-1){
-            words[index+1].active = 1;
-        }
-        setIndex(index + 1);
-        setScore(score + 1);
-        setWords(words);
-    }
-}
 
 // Events Handlers
 // ---------------
@@ -58,9 +45,26 @@ function reset(setTimeLeft, setHasStarted, setInputVal,
     setIndex(0);
     setScore(0);
     setInputWord("");
-    setWords(JSON.parse(JSON.stringify(wordsInit)));
+    setWords(JSON.parse(JSON.stringify(resetWordsSample())));
 }
 
+function updateWords(inputWord, index, setIndex, words, 
+                     setWords, score, setScore){
+    if (inputWord===words[index].word){
+        words[index].checked = 1;
+        words[index].active = 0;
+        words[index].hasFailed = 0;
+        if (index+1<=words.length-1){
+            words[index+1].active = 1;
+        }
+        setIndex(index + 1);
+        setScore(score + 1);
+        setWords(words);
+    } else {
+        words[index].hasFailed = 1;
+        setWords(words);
+    }
+}
 
 export default () => {
 
@@ -72,7 +76,7 @@ export default () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   // Words component
-  const [words, setWords] = useState(JSON.parse(JSON.stringify(wordsInit)));
+  const [words, setWords] = useState(JSON.parse(JSON.stringify(resetWordsSample())));
   const [index, setIndex] = useState(0);
   // Score component  
   const [score, setScore] = useState(0);
@@ -84,18 +88,8 @@ export default () => {
           interval = setInterval(() => {
               setTimeLeft(timeLeft => timeLeft - 1);
           }, 1000);
-      } else {
-          reset(
-            setTimeLeft,
-            setHasStarted,
-            setInputVal,
-            setIndex,
-            setWords,
-            setInputWord,
-            setScore
-          )
 	  }
-	return () => clearInterval(interval);
+	  return () => clearInterval(interval);
   }, [timeLeft, hasStarted]); // only trigger when timer variable is updated
 
   useEffect(() => {
@@ -112,7 +106,7 @@ export default () => {
             setScore
           )
       }
-  }, [inputWord, index]);
+  }, [inputWord]);
 
   return (
     <div>
@@ -150,24 +144,23 @@ export default () => {
 
             {/* Reset Button */}
             <GridItem xs={12} sm={12} md={1} >
-              <Reset onReset={(e) => reset(
-                     setTimeLeft,
-                     setHasStarted,
-                     setInputVal,
-                     setIndex,
-                     setWords,
-                     setInputWord,
-                     setScore
+              <Reset 
+                onReset={(e) => reset(
+                    setTimeLeft,
+                    setHasStarted,
+                    setInputVal,
+                    setIndex,
+                    setWords,
+                    setInputWord,
+                    setScore
                 )}
                 classReset={classes.button} 
               />
             </GridItem>
 
-            {/* Words component */}
+            {/* Words */}
             <GridItem xs={12} sm={12} md={12}>
-              <div style={{"paddingTop":"20px"}}>
                 <Words words={words} />
-              </div>
             </GridItem>
 
         </GridContainer>
