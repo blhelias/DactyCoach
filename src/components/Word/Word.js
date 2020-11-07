@@ -1,8 +1,8 @@
 import React from "react";
 
-const checkedMapper = {
-    0: "notChecked",
-    1: "checked",
+const hasFailedMapper = {
+    1: "notChecked",
+    0: "",
 }
 const activeMapper = {
     0: "notActive",
@@ -10,11 +10,12 @@ const activeMapper = {
 }
 
 
-export default ({id, value, active, checked}) => {
+export default ({id, value, active, hasFailed}) => {
+    console.log(hasFailed);
 	return (
         <span 
           id={id} 
-          className={checkedMapper[checked] + " " + activeMapper[active] + " word"}
+          className={activeMapper[active] + " " + hasFailedMapper[hasFailed] + " word"}
           style={{"fontSize": "xx-large"}}>
             {value}  </span>
 	);

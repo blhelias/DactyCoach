@@ -21,13 +21,17 @@ function addMetaData(arr){
             "word": arr[i],
             "id": i,
             "active": 0,
-            "checked": 0
+            "checked": 0,
+            "hasFailed": 0
           });
     }
     return copy
 }
 
-const arrSample = getRandomSubarray(wordsList.wordsList, 200);
-const wordsInit = addMetaData(arrSample);
+function resetWordsSample(){
+    const arrSample = getRandomSubarray(wordsList.wordsList, 200);
+    const words = addMetaData(arrSample);
+    return words
+}
 
-export default wordsInit;
+export default resetWordsSample;
