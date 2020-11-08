@@ -8,6 +8,7 @@ import DCTextField from "components/DCInputField/DCInputField.js";
 import Timer from "components/Timer/Timer.js";
 import Reset from "components/Reset/Reset.js";
 import Score from "components/Score/Score.js";
+import Accuracy from "components/Accuracy/Accuracy.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 // utils.js
@@ -76,7 +77,9 @@ export default () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   // Words component
-  const [words, setWords] = useState(JSON.parse(JSON.stringify(resetWordsSample())));
+  const [words, setWords] = useState(
+      JSON.parse(JSON.stringify(resetWordsSample()))
+  );
   const [index, setIndex] = useState(0);
   // Score component  
   const [score, setScore] = useState(0);
@@ -88,23 +91,17 @@ export default () => {
           interval = setInterval(() => {
               setTimeLeft(timeLeft => timeLeft - 1);
           }, 1000);
-	  }
+	  } else {
+          setHasStarted(false);
+      }
 	  return () => clearInterval(interval);
   }, [timeLeft, hasStarted]); // only trigger when timer variable is updated
 
   useEffect(() => {
       if (index <= words.length-1 && hasStarted) {
-          updateWords(inputWord, index, setIndex, words, setWords, score, setScore);
-      } else {
-          reset(
-            setTimeLeft,
-            setHasStarted,
-            setInputVal,
-            setIndex,
-            setWords,
-            setInputWord,
-            setScore
-          )
+          updateWords(inputWord, index, setIndex, 
+                      words, setWords, score, setScore
+          );
       }
   }, [inputWord]);
 
@@ -113,8 +110,12 @@ export default () => {
         <GridContainer justify="center">
 
             {/* Score */}
-            <GridItem xs={12} sm={12} md={3} alignItems="center" >
+            <GridItem xs={12} sm={12} md={6} alignItems="center" >
                 <Score value={score} classes={classes} />
+            </GridItem>
+            {/* Accuracy */}
+            <GridItem xs={12} sm={12} md={6} alignItems="center" >
+                <Accuracy value={score} classes={classes} />
             </GridItem>
 
             {/* User Input */}
