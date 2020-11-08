@@ -104,10 +104,10 @@ export default () => {
           interval = setInterval(() => {
               setTimeLeft(timeLeft => timeLeft - 1);
           }, 1000);
-	  } else {
+      } else {
           setHasStarted(false);
       }
-	  return () => clearInterval(interval);
+      return () => clearInterval(interval);
   }, [timeLeft, hasStarted]); // only trigger when timer variable is updated
 
   useEffect(() => {
