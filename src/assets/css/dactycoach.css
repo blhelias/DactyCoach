@@ -1,21 +1,36 @@
 
 /* timer */
+@font-face{
+ font-family:'digital-clock-font';
+ src        : url('font/digital-7.ttf');
+}
+
+
 #timer-container{
     display        :inline-grid;
     justify-content:center;
     align-content  :center;
 }
 
+#timer {
+  font-family: "digital-clock-font"; 
+  font-size  : xx-large;
+  display    :flex;
+  justify-content: center;
+  align-items: center;
+  height     :100%;
+}
+
 /* Words */
 #words-container {
-  padding-top:20px;
-  display: block;
-  border   : 1px #d8d8d8;
-  position : relative;
+  padding-top: 20px;
+  display    : block;
+  border     : 1px #d8d8d8;
+  position   : relative;
   overflow-y : hidden;
-  width: 100%;
-  height   : 20vh;
-  text-align: justify;
+  width      : 100%;
+  height     : 20vh;
+  text-align : justify;
 }
 
 #words-container:after {
@@ -37,6 +52,7 @@
 .word{
     padding   : 5px;
     margin-top: 1px;
+    font-size: xx-large;
 }
 
 .active {
@@ -53,6 +69,6 @@
 }
 
 .notChecked {
-    color: red;
+    color      : red;
     font-weight: bold;
 }

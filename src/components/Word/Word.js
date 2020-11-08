@@ -11,12 +11,10 @@ const activeMapper = {
 
 
 export default ({id, value, active, hasFailed}) => {
-    console.log(hasFailed);
 	return (
         <span 
           id={id} 
-          className={activeMapper[active] + " " + hasFailedMapper[hasFailed] + " word"}
-          style={{"fontSize": "xx-large"}}>
-            {value}  </span>
+          className={`${activeMapper[active]} ${hasFailedMapper[hasFailed]} word`}
+        > {value} </span>
 	);
 }

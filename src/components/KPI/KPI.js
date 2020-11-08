@@ -5,11 +5,9 @@ import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
-import Speed from "@material-ui/icons/Speed";
-import Update from "@material-ui/icons/Update";
 
 
-export default ({value, classes}) => {
+export default ({title, value, icon, classes}) => {
 	return (
 	    <div id="score" 
              style={{
@@ -20,9 +18,10 @@ export default ({value, classes}) => {
 		  <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
-                <Speed />
+                {icon}
               </CardIcon>
-              <h3 className={classes.cardTitle}>Score:  {value}</h3>
+              <p className={classes.cardCategory}> {title} </p>
+              <h3 className={classes.cardTitle}>{value.toFixed(2)}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>

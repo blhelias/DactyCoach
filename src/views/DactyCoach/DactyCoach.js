@@ -7,10 +7,12 @@ import GridContainer from "components/Grid/GridContainer.js";
 import DCTextField from "components/DCInputField/DCInputField.js";
 import Timer from "components/Timer/Timer.js";
 import Reset from "components/Reset/Reset.js";
-import Score from "components/Score/Score.js";
-import Accuracy from "components/Accuracy/Accuracy.js";
+import KPI from "components/KPI/KPI.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+// Icons
+import Speed from "@material-ui/icons/Speed";
+import MyLocation from "@material-ui/icons/MyLocation";
 // utils.js
 import resetWordsSample from "utils.js";
 
@@ -39,19 +41,27 @@ function handleChange(e, setInputVal, hasStarted,
 }
 
 function reset(setTimeLeft, setHasStarted, setInputVal, 
-               setIndex, setWords, setInputWord, setScore){
+               setIndex, setWords, setInputWord,
+               setSuccessAttempt, setFailedAttempt, setSpeed, setAccuracy){
     setTimeLeft(60);
     setHasStarted(false);
     setInputVal("");
     setIndex(0);
-    setScore(0);
+    setSpeed(0);
+    setAccuracy(0);
+    setSuccessAttempt(0);
+    setFailedAttempt(0);
     setInputWord("");
     setWords(JSON.parse(JSON.stringify(resetWordsSample())));
 }
 
-function updateWords(inputWord, index, setIndex, words, 
-                     setWords, score, setScore){
+function updateWords(inputWord, 
+                     index, setIndex, 
+                     words, setWords, 
+                     successAttempt, setSuccessAttempt,
+                     failedAttempt, setFailedAttempt){
     if (inputWord===words[index].word){
+        setSuccessAttempt(successAttempt + 1);
         words[index].checked = 1;
         words[index].active = 0;
         words[index].hasFailed = 0;
@@ -59,11 +69,11 @@ function updateWords(inputWord, index, setIndex, words,
             words[index+1].active = 1;
         }
         setIndex(index + 1);
-        setScore(score + 1);
         setWords(words);
     } else {
         words[index].hasFailed = 1;
         setWords(words);
+        setFailedAttempt(failedAttempt + 1);
     }
 }
 
@@ -81,8 +91,11 @@ export default () => {
       JSON.parse(JSON.stringify(resetWordsSample()))
   );
   const [index, setIndex] = useState(0);
-  // Score component  
-  const [score, setScore] = useState(0);
+  // KPI componens
+  const [successAttempt, setSuccessAttempt] = useState(0);
+  const [failedAttempt, setFailedAttempt] = useState(0);
+  const [speed, setSpeed] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
 
   // Manage Timer component 
   useEffect(() => {
@@ -99,23 +112,39 @@ export default () => {
 
   useEffect(() => {
       if (index <= words.length-1 && hasStarted) {
-          updateWords(inputWord, index, setIndex, 
-                      words, setWords, score, setScore
+          updateWords(inputWord, 
+                      index, setIndex, 
+                      words, setWords, 
+                      successAttempt, setSuccessAttempt, 
+                      failedAttempt, setFailedAttempt
           );
       }
   }, [inputWord]);
+
+  useEffect(() => {
+      setAccuracy(
+          (successAttempt <= 0) ? 0 : (
+              successAttempt / (successAttempt + failedAttempt)
+          )
+      );
+      setSpeed( 
+          (successAttempt <= 0 || timeLeft===60) ? 0 : (
+              (60 * successAttempt) / (60 - timeLeft) 
+          )
+      );
+  }, [successAttempt, failedAttempt]);
 
   return (
     <div>
         <GridContainer justify="center">
 
-            {/* Score */}
-            <GridItem xs={12} sm={12} md={6} alignItems="center" >
-                <Score value={score} classes={classes} />
+            {/* KPI | Speed */}
+            <GridItem xs={12} sm={12} md={6}>
+                <KPI title={"Mots par Minute"} value={speed} icon={<Speed />} classes={classes} />
             </GridItem>
-            {/* Accuracy */}
-            <GridItem xs={12} sm={12} md={6} alignItems="center" >
-                <Accuracy value={score} classes={classes} />
+            {/* KPI | Accuracy */}
+            <GridItem xs={12} sm={12} md={6}>
+                <KPI title={"Précision par Mots"} value={accuracy} icon={<MyLocation />} classes={classes} />
             </GridItem>
 
             {/* User Input */}
@@ -153,7 +182,10 @@ export default () => {
                     setIndex,
                     setWords,
                     setInputWord,
-                    setScore
+                    setSuccessAttempt,
+                    setFailedAttempt,
+                    setSpeed,
+                    setAccuracy
                 )}
                 classReset={classes.button} 
               />
