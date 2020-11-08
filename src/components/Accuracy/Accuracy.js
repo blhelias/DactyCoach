@@ -11,7 +11,7 @@ import Update from "@material-ui/icons/Update";
 
 export default ({value, classes}) => {
 	return (
-	    <div id="score" 
+	    <div id="accuracy" 
              style={{
                "textAlign": "center", 
                "fontSize": "x-large", 
@@ -22,7 +22,7 @@ export default ({value, classes}) => {
               <CardIcon color="info">
                 <Speed />
               </CardIcon>
-              <h3 className={classes.cardTitle}>Score:  {value}</h3>
+              <h3 className={classes.cardTitle}>Accuracy:  {value}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
