@@ -58,22 +58,22 @@ function reset(setTimeLeft, setHasStarted, setInputVal,
 function updateWords(inputWord, 
                      index, setIndex, 
                      words, setWords, 
-                     successAttempt, setSuccessAttempt,
-                     failedAttempt, setFailedAttempt){
+                     setSuccessAttempt,
+                     setFailedAttempt){
     if (inputWord===words[index].word){
-        setSuccessAttempt(successAttempt + 1);
+        setSuccessAttempt(s => s+1);
         words[index].checked = 1;
         words[index].active = 0;
         words[index].hasFailed = 0;
         if (index+1<=words.length-1){
             words[index+1].active = 1;
         }
-        setIndex(index + 1);
+        setIndex(i => i+1);
         setWords(words);
     } else {
         words[index].hasFailed = 1;
         setWords(words);
-        setFailedAttempt(failedAttempt + 1);
+        setFailedAttempt(f => f+1);
     }
 }
 
@@ -115,10 +115,11 @@ export default () => {
           updateWords(inputWord, 
                       index, setIndex, 
                       words, setWords, 
-                      successAttempt, setSuccessAttempt, 
-                      failedAttempt, setFailedAttempt
+                      setSuccessAttempt, 
+                      setFailedAttempt
           );
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputWord]);
 
   useEffect(() => {
@@ -132,6 +133,7 @@ export default () => {
               (60 * successAttempt) / (60 - timeLeft) 
           )
       );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successAttempt, failedAttempt]);
 
   return (
