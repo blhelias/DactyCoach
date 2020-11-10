@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
 // core components
@@ -8,6 +8,7 @@ import DCTextField from "components/DCInputField/DCInputField.js";
 import Timer from "components/Timer/Timer.js";
 import Reset from "components/Reset/Reset.js";
 import KPI from "components/KPI/KPI.js";
+import Board from "components/Board/Board.js";
 import Words from "components/Words/Words.js";
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 // Icons
@@ -196,6 +197,10 @@ export default () => {
             {/* Words */}
             <GridItem xs={12} sm={12} md={12}>
                 <Words words={words} />
+            </GridItem>
+            {/* Board */}
+            <GridItem xs={12} sm={12} md={12}>
+                <Board inputVal={words} />
             </GridItem>
 
         </GridContainer>

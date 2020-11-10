@@ -6,7 +6,7 @@ export default ({words}) => {
 	return (
         <div id="words-container">
             {words
-                .filter(w => w.checked==0)
+                .filter(w => w.checked===0)
                 .map(word => (
                     <Word 
                         key={word.id} 

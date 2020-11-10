@@ -72,3 +72,9 @@
     color      : red;
     font-weight: bold;
 }
+
+canvas {
+    width: 100%;
+    /* TODO: */
+    height: 300px;
+}
