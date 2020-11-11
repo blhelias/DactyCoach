@@ -21,7 +21,8 @@ import Home from "@material-ui/icons/Home";
 import Person from "@material-ui/icons/Person";
 // core components/views for DactyCoach layout
 import HomePage from "views/Home/Home.js"
-import DactyCoachPage from "views/DactyCoach/DactyCoach.js";
+import DactyCoachClassic from "views/DactyCoach/DactyCoachClassic.js";
+import DactyCoachGame from "views/DactyCoach/DactyCoachGame.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 
 const dactyCoachRoutes = [
@@ -33,10 +34,17 @@ const dactyCoachRoutes = [
     layout: "/"
   },
   {
-    path: "training-session",
-    name: "Training",
+    path: "classic-training",
+    name: "Classic",
     icon: Dashboard,
-    component: DactyCoachPage,
+    component: DactyCoachClassic,
+    layout: "/"
+  },
+  {
+    path: "game-training",
+    name: "Game",
+    icon: Dashboard,
+    component: DactyCoachGame,
     layout: "/"
   },
   {
