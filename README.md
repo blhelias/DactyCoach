@@ -2,7 +2,9 @@
 
 ## TODO
 
-* Text animation board component
+* [WIP] Text animation board component
+  * TODO: Initialisation des mots de manière aléatoire
+  * TODO: mise a jour du Board en fonction de l'input utilisateur
 * Logo + graphic layout (color, font, ...)
 * Ajout bouton dark mode
 * Changer langue

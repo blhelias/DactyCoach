@@ -13,6 +13,24 @@ const drawLine = (ctx, info, style = {}) => {
   ctx.stroke();
 }
 
+const fillWord = (ctx, word) => {
+    if (word.active===1){
+
+        if (word.hasFailed===1){
+            ctx.fillStyle = "red"
+        }
+
+        ctx.font = "bold 30px 'Roboto', 'Helvetica', 'Arial', sans-serif"
+        // Shadow parameters
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+        ctx.shadowColor = "black";
+        ctx.shadowBlur=3;
+
+        ctx.fillText(word.word, word.x, word.y);
+    }
+}
+
 export default ({words, width, height, xLimit}) => {
 
     const canvas = useRef(null);
@@ -30,15 +48,7 @@ export default ({words, width, height, xLimit}) => {
             
             for (let w in words) {
 		        let word = words[w];
-
-                if (word.active===1){
-                    if (word.hasFailed===1){
-                        ctx.fillStyle = "red"
-                    }
-
-                    ctx.font = "bold 30px 'Roboto', 'Helvetica', 'Arial', sans-serif"
-                    ctx.fillText(word.word, word.x, word.y);
-                }
+                fillWord(ctx, word);
             }
         }
             backImage.src = backImagePath;

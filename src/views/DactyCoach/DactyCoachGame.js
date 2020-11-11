@@ -43,6 +43,7 @@ export default () => {
     const [speed, setSpeed] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
     // Board component
+    // TODO: rendre les dimensions responsives!
     const canvasWidth = 1275;
     const canvasHeight = 500;
     const xLimit = canvasWidth*0.8;
