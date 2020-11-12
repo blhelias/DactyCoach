@@ -22,7 +22,7 @@ export default function Home() {
                 color="primary"
                 className={classes.button}
                 style={{height: "100%"}}
-                href="/training-session"
+                href="/classic-training"
             >
                 training
             </Button>

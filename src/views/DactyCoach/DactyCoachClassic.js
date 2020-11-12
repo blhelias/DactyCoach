@@ -13,34 +13,16 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
 // Icons
 import Speed from "@material-ui/icons/Speed";
 import MyLocation from "@material-ui/icons/MyLocation";
-// utils.js
+
+import {
+    detectSpace, 
+    handleChangeClassic, 
+    reset,
+    updateWordsClassic
+} from "handlers.js";
 import resetWordsSample from "utils.js";
 
-import {detectSpace, handleChange, reset } from "handlers.js";
-
 const useStyles = makeStyles(styles);
-
-function updateWords(inputWord, 
-                     index, setIndex, 
-                     words, setWords, 
-                     setSuccessAttempt,
-                     setFailedAttempt){
-    if (inputWord===words[index].word){
-        setSuccessAttempt(s => s+1);
-        words[index].checked = 1;
-        words[index].active = 0;
-        words[index].hasFailed = 0;
-        if (index+1<=words.length-1){
-            words[index+1].active = 1;
-        }
-        setIndex(i => i+1);
-        setWords(words);
-    } else {
-        words[index].hasFailed = 1;
-        setWords(words);
-        setFailedAttempt(f => f+1);
-    }
-}
 
 export default () => {
 
@@ -48,12 +30,13 @@ export default () => {
   // Input Component 
   const [inputWord, setInputWord] = useState('');
   const [inputVal, setInputVal] = useState('');
+  const [inputDisabled, setInputDisabled] = useState(false);
   // Timer component
   const [hasStarted, setHasStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   // Words component
   const [words, setWords] = useState(
-      JSON.parse(JSON.stringify(resetWordsSample()))
+      JSON.parse(JSON.stringify(resetWordsSample("classic")))
   );
   const [index, setIndex] = useState(0);
   // KPI componens
@@ -78,7 +61,7 @@ export default () => {
 
   useEffect(() => {
       if (index <= words.length-1 && hasStarted) {
-          updateWords(inputWord, 
+          updateWordsClassic(inputWord, 
                       index, setIndex, 
                       words, setWords, 
                       setSuccessAttempt, 
@@ -119,7 +102,7 @@ export default () => {
             <GridItem xs={12} sm={12} md={10}>
                 <DCTextField
                   value={inputVal}
-                  handleChange={(e) => handleChange(
+                  handleChange={(e) => handleChangeClassic(
                       e,
                       setInputVal,
                       hasStarted,
@@ -153,7 +136,9 @@ export default () => {
                     setSuccessAttempt,
                     setFailedAttempt,
                     setSpeed,
-                    setAccuracy
+                    setAccuracy,
+                    setInputDisabled,
+                    "classic"
                 )}
                 classReset={classes.button} 
               />

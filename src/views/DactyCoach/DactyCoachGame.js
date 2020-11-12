@@ -13,12 +13,17 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
 // Icons
 import Speed from "@material-ui/icons/Speed";
 import MyLocation from "@material-ui/icons/MyLocation";
-// utils.js
-// import resetWordsSample from "utils.js";
-import {detectSpace, handleChange, reset, updateWords, wordsTest} from "handlers.js";
+
+import resetWordsSample from "utils.js";
+
+import {
+    detectSpace, 
+    handleChangeGame, 
+    reset, 
+    updateWordsGame
+} from "handlers.js";
 
 const useStyles = makeStyles(styles);
-
 
 /* 
  * DactyCoachGame component 
@@ -29,14 +34,16 @@ export default () => {
     // Input Component 
     const [inputWord, setInputWord] = useState('');
     const [inputVal, setInputVal] = useState('');
+    const [inputDisabled, setInputDisabled] = useState(false);
     // Timer component
     const [hasStarted, setHasStarted] = useState(false);
     const [timeLeft, setTimeLeft] = useState(60);
     // Words component
     const [words, setWords] = useState(
-        JSON.parse(JSON.stringify(wordsTest))
+        JSON.parse(JSON.stringify(resetWordsSample("game")))
     );
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(2);
+    const [activeWords, setActiveWords] = useState([]);
     // KPI componens
     const [successAttempt, setSuccessAttempt] = useState(0);
     const [failedAttempt, setFailedAttempt] = useState(0);
@@ -44,9 +51,11 @@ export default () => {
     const [accuracy, setAccuracy] = useState(0);
     // Board component
     // TODO: rendre les dimensions responsives!
+    // TODO: rendre la vitesse responsive aussi
     const canvasWidth = 1275;
     const canvasHeight = 500;
     const xLimit = canvasWidth*0.8;
+    const STEP = ((canvasWidth - 100) - (canvasWidth - xLimit)) / 10;
 
     // Manage Timer component 
     useEffect(() => {
@@ -56,30 +65,37 @@ export default () => {
                 setTimeLeft(timeLeft => timeLeft - 1);
             }, 1000);
         } else {
-            setHasStarted(false);
+            if (hasStarted) {
+                setHasStarted(false);
+            }
+            // TODO: disable input until reset button is pushed !
         }
         return () => clearInterval(interval);
     }, [timeLeft, hasStarted]); // only trigger when timer variable is updated
     
-    // 
     useEffect(() => {
-        if (index < words.length && hasStarted){
-            if (words[index].x <= xLimit){
-                words[index].x = words[index].x + 50;
-                setWords(words);
-            } else {
-                words[index].hasFailed = 1
-                setWords(words);
-                setHasStarted(h => !h)
+        // Pour tous les mots actifs, incrémenter X coor
+        for (let w in words){
+            if (hasStarted && words[w].active===1){
+                if (words[w].x + STEP <= xLimit){
+                    words[w].x = words[w].x + STEP;
+                    setWords(words);
+                } else {
+                    words[w].hasFailed = 1
+                    words[w].x = words[w].x + STEP;
+                    setWords(words);
+                    setHasStarted(false);
+                    setInputDisabled(true);
+                }
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeLeft, hasStarted]);
 
     useEffect(() => {
-        if (index <= words.length-1 && hasStarted) {
-            updateWords(
-      		  inputWord, 
+        if (hasStarted) {
+            updateWordsGame(
+      		    inputWord, 
                 index, setIndex, 
                 words, setWords, 
                 setSuccessAttempt, 
@@ -120,7 +136,7 @@ export default () => {
               <GridItem xs={12} sm={12} md={10}>
                   <DCTextField
                     value={inputVal}
-                    handleChange={(e) => handleChange(
+                    handleChange={(e) => handleChangeGame(
                         e,
                         setInputVal,
                         hasStarted,
@@ -133,6 +149,7 @@ export default () => {
                         setInputWord,
                         setInputVal,
                     )}
+                    inputDisabled={inputDisabled}
                   />
               </GridItem>
 
@@ -154,7 +171,9 @@ export default () => {
                       setSuccessAttempt,
                       setFailedAttempt,
                       setSpeed,
-                      setAccuracy
+                      setAccuracy,
+                      setInputDisabled,
+                      "game"
                   )}
                   classReset={classes.button} 
                 />
