@@ -4,7 +4,8 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 
 
-export default ({value, handleChange, detectSpace}) => {
+export default ({value, handleChange, detectSpace, inputDisabled}) => {
+    console.log(inputDisabled);
 
 	return (
 	    <div>
@@ -17,6 +18,7 @@ export default ({value, handleChange, detectSpace}) => {
 		        value={value}
                 onChange={handleChange}
                 onKeyDown={detectSpace}
+                disabled={inputDisabled}
 		    />
 	    </div>
 	);

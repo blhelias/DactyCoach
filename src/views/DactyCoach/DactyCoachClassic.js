@@ -13,69 +13,16 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
 // Icons
 import Speed from "@material-ui/icons/Speed";
 import MyLocation from "@material-ui/icons/MyLocation";
-// utils.js
+
+import {
+    detectSpace, 
+    handleChangeClassic, 
+    reset,
+    updateWordsClassic
+} from "handlers.js";
 import resetWordsSample from "utils.js";
 
 const useStyles = makeStyles(styles);
-
-
-// Events Handlers
-// ---------------
-function detectSpace(e, setInputWord, setInputVal){
-    if (e.keyCode===32) {
-        setInputWord(e.target.value);
-        setInputVal('');
-    }
-}
-
-function handleChange(e, setInputVal, hasStarted, 
-                      setHasStarted, index, words){
-    if (!hasStarted) {
-        setHasStarted(true);
-        words[index].active = 1;
-    }
-
-    if (e.target.value !== " "){
-         setInputVal(e.target.value);
-    }
-}
-
-function reset(setTimeLeft, setHasStarted, setInputVal, 
-               setIndex, setWords, setInputWord,
-               setSuccessAttempt, setFailedAttempt, setSpeed, setAccuracy){
-    setTimeLeft(60);
-    setHasStarted(false);
-    setInputVal("");
-    setIndex(0);
-    setSpeed(0);
-    setAccuracy(0);
-    setSuccessAttempt(0);
-    setFailedAttempt(0);
-    setInputWord("");
-    setWords(JSON.parse(JSON.stringify(resetWordsSample())));
-}
-
-function updateWords(inputWord, 
-                     index, setIndex, 
-                     words, setWords, 
-                     successAttempt, setSuccessAttempt,
-                     failedAttempt, setFailedAttempt){
-    if (inputWord===words[index].word){
-        setSuccessAttempt(successAttempt + 1);
-        words[index].checked = 1;
-        words[index].active = 0;
-        words[index].hasFailed = 0;
-        if (index+1<=words.length-1){
-            words[index+1].active = 1;
-        }
-        setIndex(index + 1);
-        setWords(words);
-    } else {
-        words[index].hasFailed = 1;
-        setWords(words);
-        setFailedAttempt(failedAttempt + 1);
-    }
-}
 
 export default () => {
 
@@ -83,12 +30,13 @@ export default () => {
   // Input Component 
   const [inputWord, setInputWord] = useState('');
   const [inputVal, setInputVal] = useState('');
+  const [inputDisabled, setInputDisabled] = useState(false);
   // Timer component
   const [hasStarted, setHasStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   // Words component
   const [words, setWords] = useState(
-      JSON.parse(JSON.stringify(resetWordsSample()))
+      JSON.parse(JSON.stringify(resetWordsSample("classic")))
   );
   const [index, setIndex] = useState(0);
   // KPI componens
@@ -96,6 +44,7 @@ export default () => {
   const [failedAttempt, setFailedAttempt] = useState(0);
   const [speed, setSpeed] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
+
 
   // Manage Timer component 
   useEffect(() => {
@@ -112,13 +61,14 @@ export default () => {
 
   useEffect(() => {
       if (index <= words.length-1 && hasStarted) {
-          updateWords(inputWord, 
+          updateWordsClassic(inputWord, 
                       index, setIndex, 
                       words, setWords, 
-                      successAttempt, setSuccessAttempt, 
-                      failedAttempt, setFailedAttempt
+                      setSuccessAttempt, 
+                      setFailedAttempt
           );
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputWord]);
 
   useEffect(() => {
@@ -132,6 +82,7 @@ export default () => {
               (60 * successAttempt) / (60 - timeLeft) 
           )
       );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [successAttempt, failedAttempt]);
 
   return (
@@ -151,7 +102,7 @@ export default () => {
             <GridItem xs={12} sm={12} md={10}>
                 <DCTextField
                   value={inputVal}
-                  handleChange={(e) => handleChange(
+                  handleChange={(e) => handleChangeClassic(
                       e,
                       setInputVal,
                       hasStarted,
@@ -185,7 +136,9 @@ export default () => {
                     setSuccessAttempt,
                     setFailedAttempt,
                     setSpeed,
-                    setAccuracy
+                    setAccuracy,
+                    setInputDisabled,
+                    "classic"
                 )}
                 classReset={classes.button} 
               />

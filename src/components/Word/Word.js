@@ -15,6 +15,6 @@ export default ({id, value, active, hasFailed}) => {
         <span 
           id={id} 
           className={`${activeMapper[active]} ${hasFailedMapper[hasFailed]} word`}
-        > {value} </span>
+        >{value} </span>
 	);
 }
