@@ -50,15 +50,11 @@ export default () => {
     const [speed, setSpeed] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
     // Board component
-    const [refVisible, setRefVisible] = useState(false)
-    const [h, setH] = useState(0)
-    const [w, setW] = useState(0)
-    const [limitX, setLimitX] = useState(0)
-    const [step, setStep] = useState(0)
+    const [h, setH] = useState(0);
+    const [w, setW] = useState(0);
+    const [limitX, setLimitX] = useState(0);
+    const [step, setStep] = useState(0);
     const parentBoardRef = useRef(null);
-    // const STEP =
-    //     ((canvasWidth - 100 - (canvasWidth - xLimit)) * INTERVAL) / 10000;
-
     // Manage Timer component
     useEffect(() => {
         let interval = null;
@@ -124,15 +120,14 @@ export default () => {
     }, [successAttempt, failedAttempt]);
 
     useEffect(() => {
-        setH(parentBoardRef.current.clientHeight)
-        setW(parentBoardRef.current.clientWidth)
-    })
+        setH(parentBoardRef.current.clientHeight);
+        setW(parentBoardRef.current.clientWidth);
+    });
+
     useEffect(() => {
-        setLimitX(0.8 * w)
-        setStep( ((w - 100 - (w - (0.8 * w))) * 1000) / 10000 )
-    }, [h, w])
-    console.log(w)
-    console.log(step)
+        setLimitX(0.8 * w);
+        setStep(((w - 100 - (w - 0.8 * w)) * 1000) / 10000);
+    }, [h, w]);
 
     return (
         <div>
@@ -223,17 +218,11 @@ export default () => {
             </GridContainer>
 
             <GridContainer>
-
                 {/* Board */}
-                <GridItem xs={12} sm={12} md={10} >
-                    <div
-                        ref={ parentBoardRef }>
-                    <Board
-                        words={words}
-                        w={w}
-                        h={h}
-                    />
-        </div>
+                <GridItem xs={12} sm={12} md={10}>
+                    <div ref={parentBoardRef}>
+                        <Board words={words} w={w} h={h} />
+                    </div>
                 </GridItem>
             </GridContainer>
         </div>
