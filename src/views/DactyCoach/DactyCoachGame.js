@@ -43,7 +43,6 @@ export default () => {
     JSON.parse(JSON.stringify(resetWordsSample('game'))),
   );
   const [index, setIndex] = useState(2);
-  const [activeWords, setActiveWords] = useState([]);
   // KPI componens
   const [successAttempt, setSuccessAttempt] = useState(0);
   const [failedAttempt, setFailedAttempt] = useState(0);
