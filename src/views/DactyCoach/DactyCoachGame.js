@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 // @material-ui/core
 import {makeStyles} from '@material-ui/core/styles';
 // core components
@@ -50,13 +50,14 @@ export default () => {
     const [speed, setSpeed] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
     // Board component
-    // TODO: rendre les dimensions responsives!
-    // TODO: rendre la vitesse responsive aussi
-    const canvasWidth = 1275;
-    const canvasHeight = 500;
-    const xLimit = canvasWidth * 0.8;
-    const STEP =
-        ((canvasWidth - 100 - (canvasWidth - xLimit)) * INTERVAL) / 10000;
+    const [refVisible, setRefVisible] = useState(false)
+    const [h, setH] = useState(0)
+    const [w, setW] = useState(0)
+    const [limitX, setLimitX] = useState(0)
+    const [step, setStep] = useState(0)
+    const parentBoardRef = useRef(null);
+    // const STEP =
+    //     ((canvasWidth - 100 - (canvasWidth - xLimit)) * INTERVAL) / 10000;
 
     // Manage Timer component
     useEffect(() => {
@@ -78,12 +79,12 @@ export default () => {
         // Pour tous les mots actifs, incrémenter X coor
         for (let w in words) {
             if (hasStarted && words[w].active === 1) {
-                if (words[w].x + STEP <= xLimit) {
-                    words[w].x = words[w].x + STEP;
+                if (words[w].x + step <= limitX) {
+                    words[w].x = words[w].x + step;
                     setWords(words);
                 } else {
                     words[w].hasFailed = 1;
-                    words[w].x = words[w].x + STEP;
+                    words[w].x = words[w].x + step;
                     setWords(words);
                     setHasStarted(false);
                     setInputDisabled(true);
@@ -121,6 +122,17 @@ export default () => {
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [successAttempt, failedAttempt]);
+
+    useEffect(() => {
+        setH(parentBoardRef.current.clientHeight)
+        setW(parentBoardRef.current.clientWidth)
+    })
+    useEffect(() => {
+        setLimitX(0.8 * w)
+        setStep( ((w - 100 - (w - (0.8 * w))) * 1000) / 10000 )
+    }, [h, w])
+    console.log(w)
+    console.log(step)
 
     return (
         <div>
@@ -213,13 +225,15 @@ export default () => {
             <GridContainer>
 
                 {/* Board */}
-                <GridItem xs={12} sm={12} md={9} style={{"justifyContent": "left"}}>
+                <GridItem xs={12} sm={12} md={10} >
+                    <div
+                        ref={ parentBoardRef }>
                     <Board
                         words={words}
-                        width={canvasWidth}
-                        height={canvasHeight}
-                        xLimit={xLimit}
+                        w={w}
+                        h={h}
                     />
+        </div>
                 </GridItem>
             </GridContainer>
         </div>
