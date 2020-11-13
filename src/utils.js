@@ -37,6 +37,7 @@ function addMetaData(arr, mode) {
       hasFailed: 0, // mot rouge ou vert
       x: getRandomIntInclusive(100, 150),
       y: getRandomIntInclusive(50, 450),
+      remainingSteps: 10
     });
   }
   return copy;
