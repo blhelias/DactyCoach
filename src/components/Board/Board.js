@@ -30,17 +30,9 @@ const fillWord = (ctx, word) => {
     }
 };
 
-export default ({words, width, height, xLimitn}) => {
+export default ({words, w, h}) => {
     const canvas = useRef(null);
     const canvasContainer = useRef(null);
-    const [h, setH] = useState(0)
-    const [w, setW] = useState(0)
-
-    useEffect(() => {
-      setH(canvasContainer.current.clientHeight)
-      setW(canvasContainer.current.clientWidth)
-    }, [])
-
 
     useEffect(() => {
         const ctx = canvas.current.getContext('2d');
