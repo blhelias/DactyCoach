@@ -74,6 +74,7 @@
 
 #board {
   padding-top: 20px;
+  height: 50vh;
 }
 /* canvas {
     width: 100%;

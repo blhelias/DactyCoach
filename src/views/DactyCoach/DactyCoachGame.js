@@ -121,8 +121,6 @@ export default () => {
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [successAttempt, failedAttempt]);
-    console.log(successAttempt);
-    console.log(failedAttempt);
 
     return (
         <div>
@@ -210,9 +208,12 @@ export default () => {
                         classReset={classes.button}
                     />
                 </GridItem>
+            </GridContainer>
+
+            <GridContainer>
 
                 {/* Board */}
-                <GridItem xs={12} sm={12} md={12}>
+                <GridItem xs={12} sm={12} md={9} style={{"justifyContent": "left"}}>
                     <Board
                         words={words}
                         width={canvasWidth}
