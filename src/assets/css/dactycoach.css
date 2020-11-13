@@ -1,80 +1,79 @@
-
 /* timer */
-@font-face{
- font-family:'digital-clock-font';
- src        : url('font/digital-7.ttf');
+@font-face {
+  font-family: 'digital-clock-font';
+  src: url('font/digital-7.ttf');
 }
 
-
-#timer-container{
-    display        :inline-grid;
-    justify-content:center;
-    align-content  :center;
+#timer-container {
+  display: inline-grid;
+  justify-content: center;
+  align-content: center;
 }
 
 #timer {
-  font-family: "digital-clock-font"; 
-  font-size  : xx-large;
-  display    :flex;
+  font-family: 'digital-clock-font';
+  font-size: xx-large;
+  display: flex;
   justify-content: center;
   align-items: center;
-  height     :100%;
+  height: 100%;
 }
 
 /* Words */
 #words-container {
   padding-top: 20px;
-  display    : block;
-  border     : 1px #d8d8d8;
-  position   : relative;
-  overflow-y : hidden;
-  width      : 100%;
-  height     : 20vh;
-  text-align : justify;
+  display: block;
+  border: 1px #d8d8d8;
+  position: relative;
+  overflow-y: hidden;
+  width: 100%;
+  height: 20vh;
+  text-align: justify;
 }
 
 #words-container:after {
-  content  : "";
-  position : absolute;
-  z-index  : 1;
-  bottom   : 0;
-  left     : 0;
-  pointer-events   : none;
-  background-image : linear-gradient(to bottom, 
-                    rgba(255,255,255, 0), 
-                    rgba(238,238,238, 0.9) 100%);
-  width    : 100%;
-  height   : 20vh;
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(238, 238, 238, 0.9) 100%
+  );
+  width: 100%;
+  height: 20vh;
 }
 
-
 /* Word */
-.word{
-    padding   : 5px;
-    margin-top: 1px;
-    font-size: xx-large;
+.word {
+  padding: 5px;
+  margin-top: 1px;
+  font-size: xx-large;
 }
 
 .active {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .notActive {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .checked {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 
 .notChecked {
-    color      : red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
 #board {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 /* canvas {
     width: 100%;
