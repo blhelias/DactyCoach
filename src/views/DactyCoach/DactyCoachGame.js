@@ -55,6 +55,7 @@ export default () => {
     const [limitX, setLimitX] = useState(0);
     const [step, setStep] = useState(0);
     const parentBoardRef = useRef(null);
+
     // Manage Timer component
     useEffect(() => {
         let interval = null;
@@ -122,7 +123,7 @@ export default () => {
     useEffect(() => {
         setH(parentBoardRef.current.clientHeight);
         setW(parentBoardRef.current.clientWidth);
-    });
+    }, [time]);
 
     useEffect(() => {
         setLimitX(0.8 * w);
@@ -219,7 +220,7 @@ export default () => {
 
             <GridContainer>
                 {/* Board */}
-                <GridItem xs={12} sm={12} md={10}>
+                <GridItem xs={12} sm={12} md={12}>
                     <div ref={parentBoardRef}>
                         <Board words={words} w={w} h={h} />
                     </div>

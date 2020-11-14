@@ -1,4 +1,5 @@
-# Dacty Coach [Logo à venir...]
+# Dacty Coach
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/documentation/rabbit-filled-logo.png)
 
 ## TODO
 
