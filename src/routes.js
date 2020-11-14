@@ -16,9 +16,10 @@
 
 */
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
+import Coffee from "@material-ui/icons/FreeBreakfast";
 import Home from "@material-ui/icons/Home";
 import Person from "@material-ui/icons/Person";
+import Game from "@material-ui/icons/SportsEsports";
 // core components/views for DactyCoach layout
 import HomePage from "views/Home/Home.js"
 import DactyCoachClassic from "views/DactyCoach/DactyCoachClassic.js";
@@ -36,14 +37,14 @@ const dactyCoachRoutes = [
   {
     path: "classic-training",
     name: "Classic",
-    icon: Dashboard,
+    icon: Coffee,
     component: DactyCoachClassic,
     layout: "/"
   },
   {
     path: "game-training",
     name: "Game",
-    icon: Dashboard,
+    icon: Game,
     component: DactyCoachGame,
     layout: "/"
   },
