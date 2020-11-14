@@ -3,15 +3,14 @@
 
 ## Guide démarrage
 
-In the project directory, you can run:
+Pour démarrer le projet avec npm:
 ```
 npm start
 ```
 
 ## Guide démarrage ++
 
-In the project directory, you can run:
-
+Por démarrer le projet avec Docker:
 ```
 docker build -t dacty_coach:latest . \
 && docker run -p 3000:3000 -it dacty_coach:latest
