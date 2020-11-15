@@ -61,10 +61,10 @@ export function reset(
     setInputDisabled,
     mode,
 ) {
-    setTime(0);
+    mode==='game' ? setTime(0) : setTime(60);
     setHasStarted(false);
     setInputVal('');
-    setIndex(2);
+    mode==='game' ? setIndex(2): setIndex(0);
     setSpeed(0);
     setAccuracy(0);
     setSuccessAttempt(0);

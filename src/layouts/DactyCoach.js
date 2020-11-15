@@ -14,7 +14,7 @@ import routes from "routes.js";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
-import bgImage from "assets/img/sidebar-5.png";
+// import bgImage from "assets/img/sidebar-5.png";
 import logo from "assets/img/rabbit-filled-logo.png";
 
 let ps;
@@ -45,7 +45,7 @@ export default function Admin({ ...rest }) {
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
   // states and functions
-  const [image, ] = React.useState(bgImage);
+  // const [image, ] = React.useState(bgImage);
   const [color, ] = React.useState("blue");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
