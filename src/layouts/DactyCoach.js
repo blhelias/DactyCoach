@@ -81,9 +81,9 @@ export default function Admin({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Dacty Coach"}
+        logoText={"Dacty Speed"}
         logo={logo}
-        image={image}
+        image={null}
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}
         color={color}

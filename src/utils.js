@@ -28,6 +28,8 @@ function addMetaData(arr, mode) {
         let active = 0;
         if (i < 3 && mode === 'game') {
             active = 1;
+        } else if (i < 1 && mode === 'classic'){
+            active = 1;
         }
         copy.push({
             word: arr[i],

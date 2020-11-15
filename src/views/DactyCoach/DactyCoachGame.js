@@ -11,6 +11,8 @@ import KPI from 'components/KPI/KPI.js';
 import Board from 'components/Board/Board.js';
 import styles from 'assets/jss/material-dashboard-react/views/dashboardStyle.js';
 // Icons
+import Cancel from '@material-ui/icons/Cancel';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 import Speed from '@material-ui/icons/Speed';
 import MyLocation from '@material-ui/icons/MyLocation';
 
@@ -139,6 +141,7 @@ export default () => {
                         title={'Mots par Minute'}
                         value={speed}
                         icon={<Speed />}
+                        colorClass={'info'}
                         classes={classes}
                     />
                 </GridItem>
@@ -148,6 +151,7 @@ export default () => {
                         title={'Précision par Mots'}
                         value={accuracy}
                         icon={<MyLocation />}
+                        colorClass={'info'}
                         classes={classes}
                     />
                 </GridItem>
@@ -155,7 +159,8 @@ export default () => {
                     <KPI
                         title={'Mots validés'}
                         value={successAttempt}
-                        icon={<Speed />}
+                        icon={<CheckCircle />}
+                        colorClass={'success'}
                         classes={classes}
                     />
                 </GridItem>
@@ -163,7 +168,8 @@ export default () => {
                     <KPI
                         title={'Mots échoués'}
                         value={failedAttempt}
-                        icon={<Speed />}
+                        icon={<Cancel />}
+                        colorClass={'danger'}
                         classes={classes}
                     />
                 </GridItem>

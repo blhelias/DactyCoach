@@ -87,7 +87,7 @@ const sidebarStyle = theme => ({
     textDecoration: "none",
     backgroundColor: "transparent",
     "&,&:hover": {
-      color: whiteColor
+      color: "#4f443e"
     }
   },
   logoLinkRTL: {
@@ -105,7 +105,8 @@ const sidebarStyle = theme => ({
     top: "22px",
     position: "absolute",
     verticalAlign: "middle",
-    border: "0"
+    border: "0",
+    display: null
   },
   background: {
     position: "absolute",
@@ -124,8 +125,8 @@ const sidebarStyle = theme => ({
       height: "100%",
       content: '""',
       display: "block",
-      background: blackColor,
-      opacity: ".8"
+      background: "#e0e0e0",
+      opacity: ".1"
     }
   },
   list: {
@@ -142,7 +143,7 @@ const sidebarStyle = theme => ({
     display: "block",
     textDecoration: "none",
     "&:hover,&:focus,&:visited,&": {
-      color: whiteColor
+      color: blackColor
     }
   },
   itemLink: {
@@ -165,7 +166,7 @@ const sidebarStyle = theme => ({
     marginRight: "15px",
     textAlign: "center",
     verticalAlign: "middle",
-    color: "rgba(" + hexToRgb(whiteColor) + ", 0.8)"
+    color: "rgba(" + hexToRgb("#4f443e") + ", 0.8)"
   },
   itemIconRTL: {
     marginRight: "3px",
@@ -177,7 +178,7 @@ const sidebarStyle = theme => ({
     margin: "0",
     lineHeight: "30px",
     fontSize: "14px",
-    color: whiteColor
+    color: "#6c6764"
   },
   itemTextRTL: {
     textAlign: "right"

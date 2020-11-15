@@ -3,14 +3,14 @@
 
 ## Guide démarrage
 
-Pour démarrer le projet avec npm:
+Pour démarrer le projet avec **npm**:
 ```
 npm start
 ```
 
 ## Guide démarrage ++
 
-Por démarrer le projet avec Docker:
+Por démarrer le projet avec **Docker**:
 ```
 docker build -t dacty_coach:latest . \
 && docker run -p 3000:3000 -it dacty_coach:latest
