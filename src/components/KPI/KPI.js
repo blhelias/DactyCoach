@@ -4,7 +4,7 @@ import CardHeader from 'components/Card/CardHeader.js';
 import CardIcon from 'components/Card/CardIcon.js';
 import CardFooter from 'components/Card/CardFooter.js';
 
-export default ({title, value, icon, classes}) => {
+export default ({title, value, icon, colorClass, classes}) => {
     return (
         <div
             id="score"
@@ -14,8 +14,8 @@ export default ({title, value, icon, classes}) => {
                 width: '100%',
             }}>
             <Card>
-                <CardHeader color="info" stats icon>
-                    <CardIcon color="info">{icon}</CardIcon>
+                <CardHeader color={colorClass} stats icon>
+                    <CardIcon color={colorClass}>{icon}</CardIcon>
                     <p className={classes.cardCategory}> {title} </p>
                     <h3 className={classes.cardTitle}>{value.toFixed(2)}</h3>
                 </CardHeader>

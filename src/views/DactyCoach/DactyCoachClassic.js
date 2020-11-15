@@ -12,6 +12,8 @@ import Words from 'components/Words/Words.js';
 import styles from 'assets/jss/material-dashboard-react/views/dashboardStyle.js';
 // Icons
 import Speed from '@material-ui/icons/Speed';
+import Cancel from '@material-ui/icons/Cancel';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 import MyLocation from '@material-ui/icons/MyLocation';
 
 import {
@@ -90,20 +92,40 @@ export default () => {
         <div>
             <GridContainer justify="center">
                 {/* KPI | Speed */}
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={3}>
                     <KPI
                         title={'Mots par Minute'}
                         value={speed}
                         icon={<Speed />}
+                        colorClass={'info'}
                         classes={classes}
                     />
                 </GridItem>
                 {/* KPI | Accuracy */}
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={3}>
                     <KPI
                         title={'Précision par Mots'}
                         value={accuracy}
                         icon={<MyLocation />}
+                        colorClass={'info'}
+                        classes={classes}
+                    />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
+                    <KPI
+                        title={'Mots validés'}
+                        value={successAttempt}
+                        icon={<CheckCircle />}
+                        colorClass={'success'}
+                        classes={classes}
+                    />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={3}>
+                    <KPI
+                        title={'Mots échoués'}
+                        value={failedAttempt}
+                        icon={<Cancel />}
+                        colorClass={'danger'}
                         classes={classes}
                     />
                 </GridItem>
