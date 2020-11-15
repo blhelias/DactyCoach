@@ -49,9 +49,9 @@ export default () => {
     // Board component
     const [h, setH] = useState(0);
     const [w, setW] = useState(0);
-    const [limitX, setLimitX] = useState(0);
-    const [step, setStep] = useState(0);
     const parentBoardRef = useRef(null);
+    const X_LIMIT = 80; // line will be drawn at 80% of the board's width
+    const STEP = 10; // You have 9 seconds to write a word
 
     // Manage Timer component
     useEffect(() => {
@@ -64,7 +64,6 @@ export default () => {
             if (hasStarted) {
                 setHasStarted(false);
             }
-            // TODO: disable input until reset button is pushed !
         }
         return () => clearInterval(interval);
     }, [time, hasStarted]); // only trigger when timer variable is updated
@@ -73,12 +72,12 @@ export default () => {
         // Pour tous les mots actifs, incrémenter X coor
         for (let w in words) {
             if (hasStarted && words[w].active === 1) {
-                if (words[w].x + step <= limitX) {
-                    words[w].x = words[w].x + step;
+                if (words[w].x + STEP <= X_LIMIT) {
+                    words[w].x = words[w].x + STEP;
                     setWords(words);
                 } else {
                     words[w].hasFailed = 1;
-                    words[w].x = words[w].x + step;
+                    words[w].x = words[w].x + STEP;
                     setWords(words);
                     setHasStarted(false);
                     setInputDisabled(true);
@@ -122,11 +121,6 @@ export default () => {
         setW(parentBoardRef.current.clientWidth);
     }, [time]);
 
-    useEffect(() => {
-        setLimitX(0.8 * w);
-        setStep(((w - 100 - (w - 0.8 * w)) * 1000) / 10000);
-    }, [h, w]);
-
     return (
         <div>
             
@@ -138,11 +132,11 @@ export default () => {
             />
 
             <GridContainer justify="center">
-
                 {/* User Input */}
                 <GridItem xs={12} sm={12} md={10}>
                     <DCTextField
                         value={inputVal}
+                        inputDisabled={inputDisabled}
                         handleChange={e =>
                             handleChangeGame(
                                 e,
@@ -156,7 +150,6 @@ export default () => {
                         detectSpace={e =>
                             detectSpace(e, setInputWord, setInputVal)
                         }
-                        inputDisabled={inputDisabled}
                     />
                 </GridItem>
 

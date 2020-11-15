@@ -37,8 +37,8 @@ function addMetaData(arr, mode) {
             active: active, // mot en cours ou pas
             checked: 0, // mot validé ou pas
             hasFailed: 0, // mot rouge ou vert
-            x: getRandomIntInclusive(100, 150),
-            y: getRandomIntInclusive(50, 450),
+            x: getRandomIntInclusive(5, 10),
+            y: getRandomIntInclusive(5, 95),
             remainingSteps: 10,
         });
     }

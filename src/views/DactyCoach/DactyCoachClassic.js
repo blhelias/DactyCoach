@@ -70,6 +70,13 @@ export default () => {
     }, [inputWord]);
 
     useEffect(() => {
+        if (!hasStarted && index > 0) {
+            setInputDisabled(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hasStarted]);
+
+    useEffect(() => {
         setAccuracy(
             successAttempt <= 0
                 ? 0
@@ -85,18 +92,18 @@ export default () => {
 
     return (
         <div>
-            <KPIs 
+            <KPIs
                 speed={speed.toFixed(0)}
-                accuracy={(accuracy * 100).toFixed(0).toString() + "%" }
+                accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
                 successAttempt={successAttempt}
                 failedAttempt={failedAttempt}
             />
             <GridContainer justify="center">
-
                 {/* User Input */}
                 <GridItem xs={12} sm={12} md={10}>
                     <DCTextField
                         value={inputVal}
+                        inputDisabled={inputDisabled}
                         handleChange={e =>
                             handleChangeClassic(
                                 e,

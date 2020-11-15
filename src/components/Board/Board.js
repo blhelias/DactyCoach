@@ -1,5 +1,5 @@
 import backImagePath from 'assets/img/spacev3.png';
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 
 // draw a line
 const drawLine = (ctx, info, style = {}) => {
@@ -13,7 +13,7 @@ const drawLine = (ctx, info, style = {}) => {
     ctx.stroke();
 };
 
-const fillWord = (ctx, word) => {
+const fillWord = (ctx, word, w, h) => {
     if (word.active === 1) {
         if (word.hasFailed === 1) {
             ctx.fillStyle = 'red';
@@ -25,8 +25,7 @@ const fillWord = (ctx, word) => {
         ctx.shadowOffsetY = 2;
         ctx.shadowColor = 'black';
         ctx.shadowBlur = 3;
-
-        ctx.fillText(word.word, word.x, word.y);
+        ctx.fillText(word.word, (word.x / 100) * w, (word.y / 100) * h);
     }
 };
 
@@ -43,8 +42,8 @@ export default ({words, w, h}) => {
             ctx.fillStyle = 'white';
             drawLine(ctx, {x: w * 0.8, y: 0, x1: w * 0.8, y1: h});
 
-            for (let w in words) {
-                fillWord(ctx, words[w]);
+            for (let word in words) {
+                fillWord(ctx, words[word], w, h);
             }
         };
         backImage.src = backImagePath;
