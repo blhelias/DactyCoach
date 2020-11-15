@@ -22,6 +22,7 @@ docker build -t dacty_coach:latest . \
   * Changer Board background
   * FIX canvas height not responsive
   * Ajout difficulté progressive
+* Affichier résumé de la partie
 * Ajout compte utilisateurs
   * login page
   * historisation des scores
