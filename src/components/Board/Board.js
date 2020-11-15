@@ -1,5 +1,5 @@
 import backImagePath from 'assets/img/spacev3.png';
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // draw a line
 const drawLine = (ctx, info, style = {}) => {
