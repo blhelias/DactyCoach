@@ -16,6 +16,12 @@ docker build -t dacty_coach:latest . \
 && docker run -p 3000:3000 -it dacty_coach:latest
 ```
 
+## Mode Classique
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/documentation/mode-classique.png)
+
+## Mode Jeux
+![alt text](https://github.com/blhelias/DactyCoach/blob/master/documentation/mode-jeux.png)
+
 ## TODO
 
 * Board animation
