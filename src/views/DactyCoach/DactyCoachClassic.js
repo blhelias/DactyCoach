@@ -7,14 +7,9 @@ import GridContainer from 'components/Grid/GridContainer.js';
 import DCTextField from 'components/DCInputField/DCInputField.js';
 import Timer from 'components/Timer/Timer.js';
 import Reset from 'components/Reset/Reset.js';
-import KPI from 'components/KPI/KPI.js';
+import KPIs from 'components/KPIs/KPIs.js';
 import Words from 'components/Words/Words.js';
 import styles from 'assets/jss/material-dashboard-react/views/dashboardStyle.js';
-// Icons
-import Speed from '@material-ui/icons/Speed';
-import Cancel from '@material-ui/icons/Cancel';
-import CheckCircle from '@material-ui/icons/CheckCircle';
-import MyLocation from '@material-ui/icons/MyLocation';
 
 import {
     detectSpace,
@@ -90,45 +85,13 @@ export default () => {
 
     return (
         <div>
+            <KPIs 
+                speed={speed.toFixed(0)}
+                accuracy={(accuracy * 100).toFixed(0).toString() + "%" }
+                successAttempt={successAttempt}
+                failedAttempt={failedAttempt}
+            />
             <GridContainer justify="center">
-                {/* KPI | Speed */}
-                <GridItem xs={12} sm={12} md={3}>
-                    <KPI
-                        title={'Mots par Minute'}
-                        value={speed}
-                        icon={<Speed />}
-                        colorClass={'info'}
-                        classes={classes}
-                    />
-                </GridItem>
-                {/* KPI | Accuracy */}
-                <GridItem xs={12} sm={12} md={3}>
-                    <KPI
-                        title={'Précision par Mots'}
-                        value={accuracy}
-                        icon={<MyLocation />}
-                        colorClass={'info'}
-                        classes={classes}
-                    />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                    <KPI
-                        title={'Mots validés'}
-                        value={successAttempt}
-                        icon={<CheckCircle />}
-                        colorClass={'success'}
-                        classes={classes}
-                    />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                    <KPI
-                        title={'Mots échoués'}
-                        value={failedAttempt}
-                        icon={<Cancel />}
-                        colorClass={'danger'}
-                        classes={classes}
-                    />
-                </GridItem>
 
                 {/* User Input */}
                 <GridItem xs={12} sm={12} md={10}>

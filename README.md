@@ -19,13 +19,14 @@ docker build -t dacty_coach:latest . \
 ## TODO
 
 * Board animation
+  * Changer Board background
   * FIX canvas height not responsive
   * Ajout difficulté progressive
-* Logo + graphic layout (color, font, ...)
 * Ajout compte utilisateurs
   * login page
   * historisation des scores
   * leaderboard
+* Logo + graphic layout (color, font, ...)
 * Ajout bouton dark mode
 * Changer langue
 * Changer niveau
