@@ -49,7 +49,7 @@ export default () => {
         if (hasStarted && timeLeft > 0) {
             interval = setInterval(() => {
                 setTimeLeft(timeLeft => timeLeft - 1);
-            }, 1000);
+            }, 10);
         } else {
             setHasStarted(false);
         }
