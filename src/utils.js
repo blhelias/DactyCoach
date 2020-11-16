@@ -38,7 +38,7 @@ function addMetaData(arr, mode) {
             checked: 0, // mot validé ou pas
             hasFailed: 0, // mot rouge ou vert
             x: getRandomIntInclusive(5, 10),
-            y: getRandomIntInclusive(5, 95),
+            y: getRandomIntInclusive(10, 90),
             remainingSteps: 10,
         });
     }

@@ -39,6 +39,8 @@ export default ({words, w, h}) => {
 
         backImage.onload = () => {
             ctx.drawImage(backImage, 0, 0, w, h);
+            // ctx.fillStyle = 'red';
+            // ctx.fillRect(0, 0, w, h);
             ctx.fillStyle = 'white';
             drawLine(ctx, {x: w * 0.8, y: 0, x1: w * 0.8, y1: h});
 

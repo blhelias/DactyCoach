@@ -49,7 +49,7 @@ export default () => {
         if (hasStarted && timeLeft > 0) {
             interval = setInterval(() => {
                 setTimeLeft(timeLeft => timeLeft - 1);
-            }, 10);
+            }, 1000);
         } else {
             setHasStarted(false);
         }
@@ -72,7 +72,7 @@ export default () => {
     }, [inputWord]);
 
     useEffect(() => {
-        if (!hasStarted && index > 0) {
+        if (!hasStarted && timeLeft === 0) {
             setInputDisabled(true);
             setRenderSummary(true);
         }
@@ -95,12 +95,16 @@ export default () => {
 
     return (
         <div>
-            <KPIs
-                speed={speed.toFixed(0)}
-                accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
-                successAttempt={successAttempt}
-                failedAttempt={failedAttempt}
-            />
+            {!renderSummary ? (
+                <KPIs
+                    speed={speed.toFixed(0)}
+                    accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
+                    successAttempt={successAttempt}
+                    failedAttempt={failedAttempt}
+                />
+            ) : (
+                <></>
+            )}
             <GridContainer justify="center">
                 {/* User Input */}
                 <GridItem xs={12} sm={12} md={10}>
@@ -153,17 +157,21 @@ export default () => {
                 </GridItem>
 
                 {/* Words  || Summary*/}
-                {(!renderSummary) ? (
+                {!renderSummary ? (
                     <GridItem xs={12} sm={12} md={12}>
                         <Words words={words} />
                     </GridItem>
                 ) : (
-                    <Summary 
-                        speed={speed.toFixed(0)}
-                        accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
-                        successAttempt={successAttempt}
-                        failedAttempt={failedAttempt}
-                    />
+                    <GridItem xs={12} sm={12} md={12}>
+                        <Summary
+                            speed={speed.toFixed(0)}
+                            accuracy={
+                                (accuracy * 100).toFixed(0).toString() + '%'
+                            }
+                            successAttempt={successAttempt}
+                            failedAttempt={failedAttempt}
+                        />
+                    </GridItem>
                 )}
             </GridContainer>
         </div>

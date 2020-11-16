@@ -83,6 +83,7 @@ export default () => {
                     setWords(words);
                     setHasStarted(false);
                     setInputDisabled(true);
+                    setRenderSummary(true);
                 }
             }
         }
@@ -105,14 +106,6 @@ export default () => {
     }, [inputWord]);
 
     useEffect(() => {
-        if (!hasStarted && index > 2) {
-            setInputDisabled(true);
-            setRenderSummary(true);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [hasStarted]);
-
-    useEffect(() => {
         setAccuracy(
             successAttempt <= 0
                 ? 0
@@ -129,16 +122,20 @@ export default () => {
     useEffect(() => {
         setH(parentBoardRef.current.clientHeight);
         setW(parentBoardRef.current.clientWidth);
-    }, [time]);
+    });
 
     return (
         <div>
-            <KPIs
-                speed={speed.toFixed(0)}
-                accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
-                successAttempt={successAttempt}
-                failedAttempt={failedAttempt}
-            />
+            {!renderSummary ? (
+                <KPIs
+                    speed={speed.toFixed(0)}
+                    accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
+                    successAttempt={successAttempt}
+                    failedAttempt={failedAttempt}
+                />
+            ) : (
+                <></>
+            )}
 
             <GridContainer justify="center">
                 {/* User Input */}
@@ -194,20 +191,22 @@ export default () => {
 
             <GridContainer>
                 {/* Board */}
-                    <GridItem xs={12} sm={12} md={12}>
-                        <div ref={parentBoardRef}>
-                            {(!renderSummary) ? (
-                                <Board words={words} w={w} h={h} />
-                            ) : (
-                                <Summary 
-                                    speed={speed.toFixed(0)}
-                                    accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
-                                    successAttempt={successAttempt}
-                                    failedAttempt={failedAttempt}
-                                />
-                            )}
-                        </div>
-                    </GridItem>
+                <GridItem xs={12} sm={12} md={12}>
+                    <div ref={parentBoardRef}>
+                        {!renderSummary ? (
+                            <Board words={words} w={w} h={h} />
+                        ) : (
+                            <Summary
+                                speed={speed.toFixed(0)}
+                                accuracy={
+                                    (accuracy * 100).toFixed(0).toString() + '%'
+                                }
+                                successAttempt={successAttempt}
+                                failedAttempt={failedAttempt}
+                            />
+                        )}
+                    </div>
+                </GridItem>
             </GridContainer>
         </div>
     );

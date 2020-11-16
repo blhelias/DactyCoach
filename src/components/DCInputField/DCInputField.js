@@ -11,6 +11,7 @@ export default ({value, handleChange, detectSpace, inputDisabled}) => {
                 label=""
                 variant="outlined"
                 fullWidth={true}
+                autoFocus={true}
                 autoComplete="off"
                 value={value}
                 onChange={handleChange}
