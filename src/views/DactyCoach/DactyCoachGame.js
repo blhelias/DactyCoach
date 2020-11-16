@@ -8,6 +8,7 @@ import DCTextField from 'components/DCInputField/DCInputField.js';
 import Timer from 'components/Timer/Timer.js';
 import Reset from 'components/Reset/Reset.js';
 import KPIs from 'components/KPIs/KPIs.js';
+import Summary from 'components/Summary/Summary.js';
 import Board from 'components/Board/Board.js';
 import styles from 'assets/jss/material-dashboard-react/views/dashboardStyle.js';
 
@@ -46,6 +47,7 @@ export default () => {
     const [failedAttempt, setFailedAttempt] = useState(0);
     const [speed, setSpeed] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
+    const [renderSummary, setRenderSummary] = useState(false);
     // Board component
     const [h, setH] = useState(0);
     const [w, setW] = useState(0);
@@ -103,6 +105,14 @@ export default () => {
     }, [inputWord]);
 
     useEffect(() => {
+        if (!hasStarted && index > 2) {
+            setInputDisabled(true);
+            setRenderSummary(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hasStarted]);
+
+    useEffect(() => {
         setAccuracy(
             successAttempt <= 0
                 ? 0
@@ -114,7 +124,7 @@ export default () => {
                 : (60 * successAttempt) / time,
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [successAttempt, failedAttempt]);
+    }, [successAttempt, failedAttempt, hasStarted]);
 
     useEffect(() => {
         setH(parentBoardRef.current.clientHeight);
@@ -123,10 +133,9 @@ export default () => {
 
     return (
         <div>
-            
-            <KPIs 
+            <KPIs
                 speed={speed.toFixed(0)}
-                accuracy={(accuracy * 100).toFixed(0).toString() + "%" }
+                accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
                 successAttempt={successAttempt}
                 failedAttempt={failedAttempt}
             />
@@ -174,6 +183,7 @@ export default () => {
                                 setSpeed,
                                 setAccuracy,
                                 setInputDisabled,
+                                setRenderSummary,
                                 'game',
                             )
                         }
@@ -184,11 +194,20 @@ export default () => {
 
             <GridContainer>
                 {/* Board */}
-                <GridItem xs={12} sm={12} md={12}>
-                    <div ref={parentBoardRef}>
-                        <Board words={words} w={w} h={h} />
-                    </div>
-                </GridItem>
+                    <GridItem xs={12} sm={12} md={12}>
+                        <div ref={parentBoardRef}>
+                            {(!renderSummary) ? (
+                                <Board words={words} w={w} h={h} />
+                            ) : (
+                                <Summary 
+                                    speed={speed.toFixed(0)}
+                                    accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
+                                    successAttempt={successAttempt}
+                                    failedAttempt={failedAttempt}
+                                />
+                            )}
+                        </div>
+                    </GridItem>
             </GridContainer>
         </div>
     );

@@ -59,6 +59,7 @@ export function reset(
     setSpeed,
     setAccuracy,
     setInputDisabled,
+    setRenderSummary,
     mode,
 ) {
     mode==='game' ? setTime(0) : setTime(60);
@@ -72,6 +73,7 @@ export function reset(
     setInputWord('');
     setWords(JSON.parse(JSON.stringify(resetWordsSample(mode))));
     setInputDisabled(false);
+    setRenderSummary(false);
 }
 
 export function updateWordsGame(
