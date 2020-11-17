@@ -119,6 +119,7 @@ export default () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [successAttempt, failedAttempt, hasStarted]);
 
+    // eslint-disable-next-line
     useEffect(() => {
         setH(parentBoardRef.current.clientHeight);
         setW(parentBoardRef.current.clientWidth);
