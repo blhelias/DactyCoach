@@ -8,6 +8,7 @@ import DCTextField from 'components/DCInputField/DCInputField.js';
 import Timer from 'components/Timer/Timer.js';
 import Reset from 'components/Reset/Reset.js';
 import KPIs from 'components/KPIs/KPIs.js';
+import Summary from 'components/Summary/Summary.js';
 import Words from 'components/Words/Words.js';
 import styles from 'assets/jss/material-dashboard-react/views/dashboardStyle.js';
 
@@ -40,6 +41,7 @@ export default () => {
     const [failedAttempt, setFailedAttempt] = useState(0);
     const [speed, setSpeed] = useState(0);
     const [accuracy, setAccuracy] = useState(0);
+    const [renderSummary, setRenderSummary] = useState(false);
 
     // Manage Timer component
     useEffect(() => {
@@ -70,8 +72,9 @@ export default () => {
     }, [inputWord]);
 
     useEffect(() => {
-        if (!hasStarted && index > 0) {
+        if (!hasStarted && timeLeft === 0) {
             setInputDisabled(true);
+            setRenderSummary(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasStarted]);
@@ -88,16 +91,20 @@ export default () => {
                 : (60 * successAttempt) / (60 - timeLeft),
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [successAttempt, failedAttempt]);
+    }, [successAttempt, failedAttempt, hasStarted]);
 
     return (
         <div>
-            <KPIs
-                speed={speed.toFixed(0)}
-                accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
-                successAttempt={successAttempt}
-                failedAttempt={failedAttempt}
-            />
+            {!renderSummary ? (
+                <KPIs
+                    speed={speed.toFixed(0)}
+                    accuracy={(accuracy * 100).toFixed(0).toString() + '%'}
+                    successAttempt={successAttempt}
+                    failedAttempt={failedAttempt}
+                />
+            ) : (
+                <></>
+            )}
             <GridContainer justify="center">
                 {/* User Input */}
                 <GridItem xs={12} sm={12} md={10}>
@@ -141,6 +148,7 @@ export default () => {
                                 setSpeed,
                                 setAccuracy,
                                 setInputDisabled,
+                                setRenderSummary,
                                 'classic',
                             )
                         }
@@ -148,10 +156,23 @@ export default () => {
                     />
                 </GridItem>
 
-                {/* Words */}
-                <GridItem xs={12} sm={12} md={12}>
-                    <Words words={words} />
-                </GridItem>
+                {/* Words  || Summary*/}
+                {!renderSummary ? (
+                    <GridItem xs={12} sm={12} md={12}>
+                        <Words words={words} />
+                    </GridItem>
+                ) : (
+                    <GridItem xs={12} sm={12} md={12}>
+                        <Summary
+                            speed={speed.toFixed(0)}
+                            accuracy={
+                                (accuracy * 100).toFixed(0).toString() + '%'
+                            }
+                            successAttempt={successAttempt}
+                            failedAttempt={failedAttempt}
+                        />
+                    </GridItem>
+                )}
             </GridContainer>
         </div>
     );
