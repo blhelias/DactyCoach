@@ -23,16 +23,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build docs",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "lint:check": "eslint . --ext=js,jsx;  exit 0",
     "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
     "build-package-css": "cp src/assets/css/material-dashboard-react.css dist/material-dashboard-react.css",
-    "build-package": "npm run build-package-css && babel src --out-dir dist",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build-package": "npm run build-package-css && babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
