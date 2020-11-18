@@ -1,4 +1,5 @@
 import React from 'react';
+import {useHistory} from 'react-router-dom';
 // @material-ui/core
 import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -12,6 +13,10 @@ const useStyles = makeStyles(styles);
 
 export default function Home() {
     const classes = useStyles();
+    let history = useHistory();
+    function routeChange(e) {
+        history.push('/classic-training');
+    }
     return (
         <div>
             <GridContainer>
@@ -21,8 +26,8 @@ export default function Home() {
                         color="primary"
                         className={classes.button}
                         style={{height: '100%'}}
-                        href="/classic-training">
-                        training
+                        onClick={routeChange}>
+                        Start Training
                     </Button>
                 </GridItem>
             </GridContainer>
