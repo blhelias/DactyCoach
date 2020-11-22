@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/DactyCoach/precache-manifest.81cd5e22f5bdb360e921b9e558de899f.js"
+  "/DactyCoach/precache-manifest.30b047c2a1284b4975e08d6868a2c8c2.js"
 );
 
 self.addEventListener('message', (event) => {

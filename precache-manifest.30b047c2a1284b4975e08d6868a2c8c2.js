@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b6b429da07b5adf6d5117381a8f55d82",
+    "revision": "2cb52701be9808a8b3cc50869dfc3668",
     "url": "/DactyCoach/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DactyCoach/static/css/2.d0176e96.chunk.css"
   },
   {
-    "revision": "d6e922eed23c3caae1be",
+    "revision": "e540f95f2361528289d4",
     "url": "/DactyCoach/static/css/main.418fbfb2.chunk.css"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DactyCoach/static/js/2.41bb83de.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d6e922eed23c3caae1be",
-    "url": "/DactyCoach/static/js/main.e12fc4f8.chunk.js"
+    "revision": "e540f95f2361528289d4",
+    "url": "/DactyCoach/static/js/main.b909dd37.chunk.js"
   },
   {
     "revision": "f7bdf0cfc9ea0dd44285692948c2d84f",
-    "url": "/DactyCoach/static/js/main.e12fc4f8.chunk.js.LICENSE.txt"
+    "url": "/DactyCoach/static/js/main.b909dd37.chunk.js.LICENSE.txt"
   },
   {
     "revision": "e9d5031281d35e0e104d",
@@ -38,9 +38,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "8880a65c57d7f031579335be153f64a0",
     "url": "/DactyCoach/static/media/marc.8880a65c.jpg"
-  },
-  {
-    "revision": "d7ada154ec775f0e732f6d1ad784d68e",
-    "url": "/DactyCoach/static/media/spacev3.d7ada154.png"
   }
 ]);
