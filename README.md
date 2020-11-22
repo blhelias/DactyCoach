@@ -1,38 +1,38 @@
 # Dacty Coach
+
+https://blhelias.github.io/DactyCoach
+
 ![alt text](https://github.com/blhelias/DactyCoach/blob/master/documentation/rabbit-filled-logo.png)
 
-## Guide démarrage
+## Run project (with npm)
 
-Pour démarrer le projet avec **npm**:
 ```
 npm start
 ```
 
-## Guide démarrage ++
+## Run Project (with Docker)
 
-Por démarrer le projet avec **Docker**:
 ```
 docker build -t dacty_coach:latest . \
 && docker run -p 3000:3000 -it dacty_coach:latest
 ```
 
-## Mode Classique
+## Classic Mode
 ![alt text](https://github.com/blhelias/DactyCoach/blob/master/documentation/mode-classique.png)
 
-## Mode Jeux
+## Game Mode
 ![alt text](https://github.com/blhelias/DactyCoach/blob/master/documentation/mode-jeux.png)
+
 
 ## TODO
 
 * Board animation
   * Changer Board background
   * Ajout difficulté progressive (pour le mode game)
-* Affichier résumé de la partie
 * Ajout compte utilisateurs
   * login page
   * historisation des scores
   * leaderboard
-* Deploiement k8s ou autre
 * Ajout bouton dark mode
 * Changer langue
 * Changer niveau
