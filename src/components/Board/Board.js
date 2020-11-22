@@ -1,4 +1,6 @@
 import backImagePath from 'assets/img/spacev5.png';
+// import backImagePath from 'assets/img/back.png';
+import rabbitPath from 'assets/img/rabbit-logo.png';
 import React, {useEffect, useRef} from 'react';
 
 // draw a line
@@ -36,11 +38,14 @@ export default ({words, w, h}) => {
     useEffect(() => {
         const ctx = canvas.current.getContext('2d');
         const backImage = new Image();
+        const rabbit = new Image();
 
         backImage.onload = () => {
             ctx.clearRect(0, 0, w, h);
             ctx.save();
             ctx.drawImage(backImage, 0, 0, w, h);
+            rabbit.onload = () => {ctx.drawImage(rabbit, 50, h-100, 50, 50);}
+            rabbit.src = rabbitPath;
             ctx.fillStyle = 'white';
             drawLine(ctx, {x: w * 0.8, y: 0, x1: w * 0.8, y1: h});
 

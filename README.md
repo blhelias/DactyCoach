@@ -28,7 +28,8 @@ docker build -t dacty_coach:latest . \
 
 * Board animation
   * Changer Board background
-  * Ajout difficulté progressive (pour le mode game)
+  * Ajouter fusée + étoiles
+  * Ajouter niveau de difficulté: mots compte triple et série sans echec (combo)
 * Ajout compte utilisateurs
   * login page
   * historisation des scores
