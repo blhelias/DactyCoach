@@ -1,4 +1,4 @@
-import backImagePath from 'assets/img/spacev3.png';
+import backImagePath from 'assets/img/spacev5.png';
 import React, {useEffect, useRef} from 'react';
 
 // draw a line
@@ -38,15 +38,17 @@ export default ({words, w, h}) => {
         const backImage = new Image();
 
         backImage.onload = () => {
+            ctx.clearRect(0, 0, w, h);
+            ctx.save();
             ctx.drawImage(backImage, 0, 0, w, h);
-            // ctx.fillStyle = 'red';
-            // ctx.fillRect(0, 0, w, h);
             ctx.fillStyle = 'white';
             drawLine(ctx, {x: w * 0.8, y: 0, x1: w * 0.8, y1: h});
 
             for (let word in words) {
                 fillWord(ctx, words[word], w, h);
             }
+
+            ctx.restore();
         };
         backImage.src = backImagePath;
     });
